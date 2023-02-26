@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :find_user, only: [:show, :destroy]
+    before_action :find_user, only: [:show]
 
     def index 
         users = User.all
@@ -23,6 +23,6 @@ class UsersController < ApplicationController
     end 
 
     def user_params 
-        params.permit(:username, :first_name, :last_name, :password)
+        params.permit(:user_name, :first_name, :last_name, :password)
     end
 end
