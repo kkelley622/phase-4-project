@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
     before_action :find_book, only: [:show]
-    
+
     def index 
         books = Book.all 
         render json: books, status: :ok
@@ -19,7 +19,7 @@ class BooksController < ApplicationController
     private 
 
     def find_book
-        @book = Book.find(params{:id})
+        @book = Book.find(params[:id])
     end
 
     def book_params 
