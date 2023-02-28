@@ -1,8 +1,11 @@
 import React from 'react'
+import BookCard from './BookCard'
 
-const BooksList = () => {
+const BooksList = ( {books} ) => {
+  const bookCards = books.map(book => <BookCard key={book.id} book={book}/>)
+
   return (
-    <div>BooksList</div>
+    <div>{bookCards}</div>
   )
 }
 
