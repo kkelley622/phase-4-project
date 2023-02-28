@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     fetch("/reviews")
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => setReviews(data))
   }, [])
 
   return (
@@ -27,7 +27,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path= "/books" element={<BooksList books={books}/>} />
-          <Route path= "/reviews" element={<ReviewsList />}/>
+          <Route path= "/reviews" element={<ReviewsList reviews={reviews} />}/>
         </Routes>
       </BrowserRouter>    
   );

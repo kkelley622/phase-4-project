@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import ReviewCard from './ReviewCard'
 
-const ReviewsList = () => {
+const ReviewsList = ( {reviews} ) => {
+  const reviewCards = reviews.map(review => <ReviewCard key={review.id} review={review}/>)
+
   return (
-    <div>ReviewsList</div>
+    <div>{reviewCards}</div>
   )
 }
 
