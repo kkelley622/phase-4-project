@@ -8,11 +8,18 @@ import ReviewsList from './reviews/ReviewsList'
 function App() {
 
   const [books, setBooks] = useState([]);
+  const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     fetch("/books")
     .then(response => response.json())
     .then(data => setBooks(data))
+  }, [])
+
+  useEffect(() => {
+    fetch("/reviews")
+    .then(response => response.json())
+    .then(data => console.log(data))
   }, [])
 
   return (
