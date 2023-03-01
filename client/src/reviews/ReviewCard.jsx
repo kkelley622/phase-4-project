@@ -3,8 +3,9 @@ import React from 'react'
 const ReviewCard = ( {review} ) => {
   return (
     <div>
-      <h1>Stars: {review.stars}</h1>
-      <h2>Summary: {review.summary}</h2>
+      <img src={review.book.image_url} />
+      <h2>{review.user.first_name} gives {review.book.title} {review.stars} ⭐</h2>
+      <h3>Summary: {review.summary}</h3>
     </div>
   )
 }

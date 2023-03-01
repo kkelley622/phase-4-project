@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './navigation/Navbar';
 import BooksList from './books/BooksList';
 import ReviewsList from './reviews/ReviewsList'
+import Login from './users/Login';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path= "/books" element={<BooksList books={books}/>} />
           <Route path= "/reviews" element={<ReviewsList reviews={reviews} />}/>
+          <Route path= "/login" element={<Login />} />
         </Routes>
       </BrowserRouter>    
   );
