@@ -5,6 +5,7 @@ import Navbar from './navigation/Navbar';
 import BooksList from './books/BooksList';
 import ReviewsList from './reviews/ReviewsList'
 import Login from './users/Login';
+import BookForm from './books/BookForm';
 
 function App() {
 
@@ -23,13 +24,27 @@ function App() {
     .then(data => setReviews(data))
   }, [])
 
+  const handleBookSubmit = (event, bookObj) => {
+    event.preventDefault()
+    fetch("/books", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookObj)
+    })
+    .then(response => response.json())
+    .then(data => setBooks([data, ...books]))
+  }
+
   return (
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path= "/books" element={<BooksList books={books}/>} />
-          <Route path= "/reviews" element={<ReviewsList reviews={reviews} />}/>
-          <Route path= "/login" element={<Login />} />
+          <Route path="/books" element={<BooksList books={books}/>} />
+          <Route path="/books/new" element={<BookForm handleSubmit={handleBookSubmit} />} />
+          <Route path="/reviews" element={<ReviewsList reviews={reviews} />}/>
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>    
   );
