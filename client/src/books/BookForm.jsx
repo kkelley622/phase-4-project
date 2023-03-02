@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const BookForm = ( {handleSubmit} ) => {
+const BookForm = ( {addBook} ) => {
     const [formData, setFormData] = useState({
         title: "",
         author: "",
@@ -11,9 +11,9 @@ const BookForm = ( {handleSubmit} ) => {
         setFormData({...formData, [event.target.name]: event.target.value})
     }
 
-    const clearForm = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault()
-        handleSubmit(event, formData)
+        addBook(event, formData)
         setFormData({
             title: "",
             author: "",
@@ -22,7 +22,7 @@ const BookForm = ( {handleSubmit} ) => {
     }
 
   return (
-    <form onSubmit={clearForm}>
+    <form onSubmit={handleSubmit}>
         <label>Title:</label>
         <input
             type="text"

@@ -25,7 +25,7 @@ function App() {
     .then(data => setReviews(data))
   }, [])
 
-  const handleBookSubmit = (event, bookObj) => {
+  const addBook = (event, bookObj) => {
     event.preventDefault()
     fetch("/books", {
       method: 'POST',
@@ -43,7 +43,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/books" element={<BooksList books={books}/>} />
-          <Route path="/books/new" element={<BookForm handleSubmit={handleBookSubmit} />} />
+          <Route path="/books/new" element={<BookForm addBook={addBook} />} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} />}/>
           <Route path="/reviews/new" element={<ReviewForm />} />
           <Route path="/login" element={<Login />} />
