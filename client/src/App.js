@@ -6,6 +6,7 @@ import BooksList from './books/BooksList';
 import ReviewsList from './reviews/ReviewsList'
 import Login from './users/Login';
 import BookForm from './books/BookForm';
+import ReviewForm from './reviews/ReviewForm';
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="/books" element={<BooksList books={books}/>} />
           <Route path="/books/new" element={<BookForm handleSubmit={handleBookSubmit} />} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} />}/>
+          <Route path="/reviews/new" element={<ReviewForm />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>    
