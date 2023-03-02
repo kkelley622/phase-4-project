@@ -38,6 +38,19 @@ function App() {
     .then(data => setBooks([data, ...books]))
   }
 
+  const addReview = (event, reviewObj) => {
+    event.preventDefault()
+    fetch("/reviews", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(reviewObj)
+    })
+    .then(response => response.json())
+    .then(data => setReviews([data, ...reviews]))
+  }
+
   return (
       <BrowserRouter>
         <Navbar />
@@ -45,7 +58,7 @@ function App() {
           <Route path="/books" element={<BooksList books={books}/>} />
           <Route path="/books/new" element={<BookForm addBook={addBook} />} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} />}/>
-          <Route path="/reviews/new" element={<ReviewForm />} />
+          <Route path="/reviews/new" element={<ReviewForm addReview={addReview}/>} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>    

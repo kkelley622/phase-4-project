@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ReviewForm = () => {
+const ReviewForm = ( {addReview} ) => {
 
     const [formData, setFormData] = useState({
         book_id: "",
@@ -13,18 +13,25 @@ const ReviewForm = () => {
         setFormData({...formData, [event.target.name]: event.target.value})
     }
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        addReview(event, formData)
+        setFormData({
+            book_id: "",
+            stars: "",
+            summary: "",
+            user_id: ""
+        })
     }
 
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
         <label>Book</label>
         <input
             type="text"
-            name="book"
-            value={formData.book}
+            name="book_id"
+            value={formData.book_id}
             onChange={handleChange}
             required 
         />
@@ -47,11 +54,12 @@ const ReviewForm = () => {
         <label>User</label>
         <input
             type="text"
-            name="user"
-            value={formData.user}
+            name="user_id"
+            value={formData.user_id}
             onChange={handleChange}
             required
         />
+        <input type="submit" />
     </form>
   )
 }
