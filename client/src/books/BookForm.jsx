@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const BookForm = ( {addBook} ) => {
+const BookForm = ( {addBook, errors} ) => {
     const [formData, setFormData] = useState({
         title: "",
         author: "",
@@ -28,8 +28,7 @@ const BookForm = ( {addBook} ) => {
             type="text"
             name="title"
             value={formData.title}
-            onChange={handleChange}
-            required 
+            onChange={handleChange} 
         />
         <label>Author:</label>
         <input
@@ -37,7 +36,6 @@ const BookForm = ( {addBook} ) => {
             name="author"
             value={formData.author}
             onChange={handleChange}
-            required 
         />
         <label>Cover Image:</label>
         <input
@@ -45,8 +43,14 @@ const BookForm = ( {addBook} ) => {
             name="image_url"
             value={formData.image_url}
             onChange={handleChange}
-            required 
         />
+        {errors.length > 0 && (
+            <ul style={{ color: "red" }}>
+                {errors.map((error) => (
+                    <li key={error}>{error}</li>
+                ))}
+            </ul>
+        )}
         <input type="submit" />
     </form>
   )

@@ -14,6 +14,7 @@ function App() {
   const [books, setBooks] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     fetch("/books")
@@ -42,8 +43,13 @@ function App() {
       },
       body: JSON.stringify(bookObj)
     })
-    .then(response => response.json())
-    .then(data => setBooks([data, ...books]))
+    .then((response) => {
+      if(response.ok) {
+        response.json().then((data) => setBooks([data, ...books]));
+      } else {
+        response.json().then((errorData) => setErrors(errorData.errors))
+      }
+    })
   };
 
   const addReview = (event, reviewObj) => {
@@ -77,7 +83,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/books" element={<BooksList books={books} />} />
-          <Route path="/books/new" element={<BookForm addBook={addBook} />} />
+          <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} />}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} />} />
           <Route path="/login" element={<Login />} />
