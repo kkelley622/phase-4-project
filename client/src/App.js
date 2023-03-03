@@ -34,23 +34,22 @@ function App() {
     .then(data => setUsers(data))
   }, []);
 
-  const addBook = (event, bookObj) => {
+  async function addBook(event, bookObj) {
     event.preventDefault()
-    fetch("/books", {
+    const response = await fetch("/books", {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(bookObj)
-    })
-    .then((response) => {
-      if(response.ok) {
-        response.json().then((data) => setBooks([data, ...books]));
+      body: JSON.stringify(bookObj),
+    });
+    const data = await (response).json();
+    if(response.ok) {
+      setBooks([data, ...books]);
       } else {
-        response.json().then((errorData) => setErrors(errorData.errors))
+        setErrors(data.errors)
       }
-    })
-  };
+    };
 
   const addReview = (event, reviewObj) => {
     event.preventDefault()
