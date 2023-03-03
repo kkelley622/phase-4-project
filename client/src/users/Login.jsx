@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Login = () => {
+
+  const [formData, setFormData] = useState({
+    username: "",
+    password: '',
+  });
+
+  const handleChange = (event) => {
+    setFormData({...formData, [event.target.name]: event.target.value})
+  };
+
   return (
     <form>
       <label>Username</label>
@@ -8,6 +18,7 @@ const Login = () => {
         type="text"
         name="username"
         value={formData.username}
+        onChange={handleChange}
         required
       />
       <label>Password</label>
@@ -15,6 +26,7 @@ const Login = () => {
         type="text"
         name="password"
         value={formData.password}
+        onChange={handleChange}
         required
       />
       <input type="submit" />
