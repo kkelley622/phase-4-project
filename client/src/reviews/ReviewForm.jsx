@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ReviewForm = ( {addReview} ) => {
+const ReviewForm = ( {addReview, errors} ) => {
 
     const [formData, setFormData] = useState({
         book_id: "",
@@ -24,44 +24,46 @@ const ReviewForm = ( {addReview} ) => {
         })
     }
 
-
-  return (
-    <form onSubmit={handleSubmit}>
-        <label>Book</label>
-        <input
-            type="text"
-            name="book_id"
-            value={formData.book_id}
-            onChange={handleChange}
-            required 
-        />
-        <label>Stars</label>
-        <input
-            type="text"
-            name="stars"
-            value={formData.stars}
-            onChange={handleChange}
-            required 
-        />
-        <label>Summary</label>
-        <input
-            type="text"
-            name="summary"
-            value={formData.summary}
-            onChange={handleChange}
-            required 
-        />
-        <label>User</label>
-        <input
-            type="text"
-            name="user_id"
-            value={formData.user_id}
-            onChange={handleChange}
-            required
-        />
-        <input type="submit" />
-    </form>
-  )
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>Book</label>
+            <input
+                type="text"
+                name="book_id"
+                value={formData.book_id}
+                onChange={handleChange}
+            />
+            <label>Stars</label>
+            <input
+                type="text"
+                name="stars"
+                value={formData.stars}
+                onChange={handleChange}
+            />
+            <label>Summary</label>
+            <input
+                type="text"
+                name="summary"
+                value={formData.summary}
+                onChange={handleChange}
+            />
+            <label>User</label>
+            <input
+                type="text"
+                name="user_id"
+                value={formData.user_id}
+                onChange={handleChange}
+            />
+            {errors.length > 0 && (
+                <ul style={{ color: "red" }}>
+                    {errors.map((error) => (
+                        <li key={error}>{error}</li>
+                    ))}
+                </ul>
+            )}
+            <input type="submit" />
+        </form>
+    )
 }
 
 export default ReviewForm

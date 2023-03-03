@@ -51,18 +51,22 @@ function App() {
       }
     };
 
-  const addReview = (event, reviewObj) => {
+  async function addReview(event, reviewObj) {
     event.preventDefault()
-    fetch("/reviews", {
+    const response = await fetch("/reviews", {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(reviewObj)
-    })
-    .then(response => response.json())
-    .then(data => setReviews([data, ...reviews]))
-  };
+      body: JSON.stringify(reviewObj),
+    });
+    const data = await (response).json();
+    if(response.ok) {
+      setReviews([data, ...reviews]);
+      } else {
+        setErrors(data.errors)
+      }
+    };
 
   const addUser = (event, userObj) => {
     event.preventDefault()
@@ -84,7 +88,7 @@ function App() {
           <Route path="/books" element={<BooksList books={books} />} />
           <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} />}/>
-          <Route path="/reviews/new" element={<ReviewForm addReview={addReview} />} />
+          <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup addUser={addUser} />} />
         </Routes>
