@@ -68,18 +68,22 @@ function App() {
       }
     };
 
-  const addUser = (event, userObj) => {
+  async function addUser(event, userObj) {
     event.preventDefault()
-    fetch("/users", {
+    const response = await fetch("/users", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(userObj)
-    })
-    .then(response => response.json())
-    .then(data => setUsers([data, ...users]))
-  }
+    });
+    const data = await (response.json());
+    if(response.ok) {
+      setUsers([data, ...users])
+    } else {
+      setErrors(data.errors)
+    }
+  };
 
   return (
       <BrowserRouter>
@@ -90,7 +94,7 @@ function App() {
           <Route path="/reviews" element={<ReviewsList reviews={reviews} />}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup addUser={addUser} />} />
+          <Route path="/signup" element={<Signup addUser={addUser} errors={errors} />} />
         </Routes>
       </BrowserRouter>    
   );

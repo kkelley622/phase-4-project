@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
-const Signup = ( {addUser} ) => {
+const Signup = ( {addUser, errors} ) => {
 
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
         user_name: "",
         password: "",
-        showPassword: false 
     });
 
     const handleChange = (event) => {
@@ -33,15 +32,13 @@ const Signup = ( {addUser} ) => {
             name="first_name"
             value={formData.first_name}
             onChange={handleChange}
-            required 
         />
         <label>Last Name</label>
         <input
             type="text"
             name="last_name"
             value={formData.last_name}
-            onChange={handleChange}
-            required 
+            onChange={handleChange} 
         />
         <label>Username</label>
         <input
@@ -49,7 +46,6 @@ const Signup = ( {addUser} ) => {
             name="user_name"
             value={formData.user_name}
             onChange={handleChange}
-            required 
         />
         <label>Password</label>
         <input
@@ -57,8 +53,14 @@ const Signup = ( {addUser} ) => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required 
         />
+        {errors.length > 0 && (
+            <ul style={{ color: "red" }}>
+                {errors.map((error) => (
+                    <li key={error}>{error}</li>
+                ))}
+            </ul>
+        )}
         <input type="submit" />
     </form>
   )
