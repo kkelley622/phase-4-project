@@ -85,13 +85,18 @@ function App() {
     }
   };
 
+  const handleDeleteReview = (deletedReview) => {
+    const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id);
+    setReviews(updatedReviews)
+  }
+
   return (
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/books" element={<BooksList books={books} />} />
           <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />
-          <Route path="/reviews" element={<ReviewsList reviews={reviews} />}/>
+          <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview}/>}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup addUser={addUser} errors={errors} />} />

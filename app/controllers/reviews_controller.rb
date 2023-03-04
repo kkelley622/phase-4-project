@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
 
     def destroy 
         @review.destroy 
-        head :no_content 
+        render json: @review
     end
 
     private 
