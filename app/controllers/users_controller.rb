@@ -2,6 +2,14 @@ class UsersController < ApplicationController
 
     before_action :find_user, only: [:show]
 
+    def get_current_user
+        if logged_in?
+            render json: current_user
+        else
+            render json: { message: "Not Logged In"}, status: :unauthorized
+        end
+    end
+
     def index 
         users = User.all
         render json: users, status: :ok 

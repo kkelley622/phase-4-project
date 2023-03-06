@@ -20,9 +20,17 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
+    fetch("/get-current-user")
+      .then(response => response.json())
+      .then(data => {
+        if(!data.message) {
+          loginUser(data)
+        }
+      })
+
     fetch("/books")
-    .then(response => response.json())
-    .then(data => setBooks(data))
+      .then(response => response.json())
+      .then(data => setBooks(data))
   }, []);
 
   useEffect(() => {
@@ -36,6 +44,11 @@ function App() {
     .then(response => response.json())
     .then(data => setUsers(data))
   }, []);
+
+  const loginUser = (user) => {
+    setCurrentUser(user);
+    setLoggedIn(true);
+  }
 
   async function addBook(event, bookObj) {
     event.preventDefault()
@@ -84,6 +97,7 @@ function App() {
     console.log(data)
     if(response.ok) {
       setUsers([data, ...users])
+      loginUser(data)
     } else {
       setErrors(data.errors)
     }
