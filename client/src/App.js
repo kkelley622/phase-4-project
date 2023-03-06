@@ -73,7 +73,7 @@ function App() {
 
   async function addUser(event, userObj) {
     event.preventDefault()
-    const response = await fetch("/users", {
+    const response = await fetch("/signup", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -81,6 +81,7 @@ function App() {
       body: JSON.stringify(userObj)
     });
     const data = await (response.json());
+    console.log(data)
     if(response.ok) {
       setUsers([data, ...users])
     } else {
