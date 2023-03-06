@@ -8,6 +8,8 @@
 
 # Destroy users and reseed
 
+
+
 kevin = User.create(user_name: "kkelley622", password: "1234", first_name: "Kevin", last_name: "Kelley");
 sandy = User.create(user_name: "sandy.cm4560", password: "5678", first_name: "Sandra", last_name: "Caldera");
 alex = User.create(user_name: "tennislad", password: "9012", first_name: "Alex", last_name: "Boson");
