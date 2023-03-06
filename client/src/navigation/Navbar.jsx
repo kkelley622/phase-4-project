@@ -2,15 +2,32 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
-const Navbar = () => {
+const Navbar = ( {loggedIn} ) => {
+
+  const loggedInLinks = () => {
+    return(
+      <>
+        <li><Link to="/books">Books</Link></li>  
+        <li><Link to="/reviews">Reviews</Link></li>
+        <li><Link to="#">Logout</Link></li>
+      </>
+    )
+  }
+
+  const loggedOutLinks = () => {
+    return(
+      <>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/signup">Signup</Link></li>
+      </>
+    )
+  }
+
   return (
     <div className='navbar'>
       <nav>
-          <Link to="/">Home</Link>
-          <Link to="/books">Books</Link>  
-          <Link to="/reviews">Reviews</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
+          <li><Link to="/">Home</Link></li>
+          { loggedIn ? loggedInLinks() : loggedOutLinks() }
       </nav>
     </div>
   )

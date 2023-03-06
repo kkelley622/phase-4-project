@@ -15,6 +15,9 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
   const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     fetch("/books")
@@ -92,7 +95,7 @@ function App() {
 
   return (
       <BrowserRouter>
-        <Navbar />
+        <Navbar loggedIn={loggedIn} />
         <Routes>
           <Route path="/books" element={<BooksList books={books} />} />
           <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />
