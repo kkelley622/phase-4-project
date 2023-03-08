@@ -48,7 +48,12 @@ function App() {
   const loginUser = (user) => {
     setCurrentUser(user);
     setLoggedIn(true);
-  }
+  };
+
+  const logoutUser = () => {
+    setCurrentUser(null);
+    setLoggedIn(false);
+  };
 
   async function addBook(event, bookObj) {
     event.preventDefault()
@@ -109,7 +114,7 @@ function App() {
 
   return (
       <BrowserRouter>
-        <Navbar loggedIn={loggedIn} />
+        <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
         <Routes>
           <Route path="/books" element={<BooksList books={books} />} />
           <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />

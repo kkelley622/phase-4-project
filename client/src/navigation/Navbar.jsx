@@ -2,14 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
-const Navbar = ( {loggedIn} ) => {
+const Navbar = ( {loggedIn, logoutUser} ) => {
+
+  const handleClick = () => {
+    fetch('/logout', {method: 'DELETE'})
+    logoutUser();
+  }
 
   const loggedInLinks = () => {
     return(
       <>
         <li><Link to="/books">Books</Link></li>  
         <li><Link to="/reviews">Reviews</Link></li>
-        <li><Link to="#">Logout</Link></li>
+        <li><Link to="#" onClick={handleClick}>Logout</Link></li>
       </>
     )
   }
