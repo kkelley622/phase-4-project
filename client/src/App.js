@@ -27,6 +27,7 @@ function App() {
         if(!data.message) {
           loginUser(data)
         }
+        setLoading(false)
       })
 
     fetch("/books")
@@ -118,9 +119,9 @@ function App() {
         <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
         <Errors errors={errors}/>
         <Routes>
-          <Route path="/books" element={<BooksList books={books} loggedIn={loggedIn} />} />
+          <Route path="/books" element={<BooksList books={books} loggedIn={loggedIn} loading={loading}/>} />
           <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />
-          <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview}/>}/>
+          <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading}/>}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
           <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors}/>} />
           <Route path="/signup" element={<Signup addUser={addUser} errors={errors} />} />
