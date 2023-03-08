@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Signup = ( {addUser, errors, lognUser} ) => {
+const Signup = ( {addUser, errors} ) => {
 
     const [formData, setFormData] = useState({
         first_name: "",
@@ -61,7 +61,7 @@ const Signup = ( {addUser, errors, lognUser} ) => {
                 ))}
             </ul>
         )}
-        <input type="submit" />
+        <input type="submit" value="Create Account"/>
     </form>
   )
 }

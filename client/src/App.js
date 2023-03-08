@@ -94,7 +94,6 @@ function App() {
       body: JSON.stringify(userObj)
     });
     const data = await (response.json());
-    console.log(data)
     if(response.ok) {
       setUsers([data, ...users])
       loginUser(data)
@@ -116,7 +115,7 @@ function App() {
           <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview}/>}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors}/>} />
           <Route path="/signup" element={<Signup addUser={addUser} errors={errors} />} />
         </Routes>
       </BrowserRouter>    
