@@ -23,6 +23,7 @@ const Login = ( {setErrors, loginUser} ) => {
     const data = await (response.json());
     if(response.ok) {
       loginUser(data)
+      setErrors([])
     } else {
       setErrors(data.errors)
     }
