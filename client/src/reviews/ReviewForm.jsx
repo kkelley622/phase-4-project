@@ -6,7 +6,6 @@ const ReviewForm = ( {addReview, errors} ) => {
         book_id: "",
         stars: "",
         summary: "",
-        user_id: ""
     })
 
     const handleChange = (event) => {
@@ -20,7 +19,6 @@ const ReviewForm = ( {addReview, errors} ) => {
             book_id: "",
             stars: "",
             summary: "",
-            user_id: ""
         })
     }
 
@@ -45,13 +43,6 @@ const ReviewForm = ( {addReview, errors} ) => {
                 type="text"
                 name="summary"
                 value={formData.summary}
-                onChange={handleChange}
-            />
-            <label>User</label>
-            <input
-                type="text"
-                name="user_id"
-                value={formData.user_id}
                 onChange={handleChange}
             />
             {errors.length > 0 && (

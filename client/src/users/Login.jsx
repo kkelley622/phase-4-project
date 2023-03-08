@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ( {setErrors, loginUser} ) => {
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     user_name: "",
@@ -31,6 +34,7 @@ const Login = ( {setErrors, loginUser} ) => {
       user_name: "",
       password: ""
     })
+    navigate("/books")
   };
 
   return (

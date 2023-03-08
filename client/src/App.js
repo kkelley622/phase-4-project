@@ -8,6 +8,7 @@ import Login from './users/Login';
 import BookForm from './books/BookForm';
 import ReviewForm from './reviews/ReviewForm';
 import Signup from './users/Signup';
+import Errors from './errors/Errors';
 
 function App() {
 
@@ -115,8 +116,9 @@ function App() {
   return (
       <BrowserRouter>
         <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
+        <Errors errors={errors}/>
         <Routes>
-          <Route path="/books" element={<BooksList books={books} />} />
+          <Route path="/books" element={<BooksList books={books} loggedIn={loggedIn} />} />
           <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview}/>}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
