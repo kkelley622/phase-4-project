@@ -45,13 +45,6 @@ const ReviewForm = ( {addReview, errors} ) => {
                 value={formData.summary}
                 onChange={handleChange}
             />
-            {errors.length > 0 && (
-                <ul style={{ color: "red" }}>
-                    {errors.map((error) => (
-                        <li key={error}>{error}</li>
-                    ))}
-                </ul>
-            )}
             <input type="submit" />
         </form>
     )

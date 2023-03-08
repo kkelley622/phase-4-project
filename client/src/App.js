@@ -9,6 +9,7 @@ import BookForm from './books/BookForm';
 import ReviewForm from './reviews/ReviewForm';
 import Signup from './users/Signup';
 import Errors from './errors/Errors';
+import ReviewEdit from './reviews/ReviewEdit';
 
 function App() {
 
@@ -120,8 +121,9 @@ function App() {
         <Errors errors={errors}/>
         <Routes>
           <Route path="/books" element={<BooksList books={books} loggedIn={loggedIn} loading={loading}/>} />
-          <Route path="/books/new" element={<BookForm addBook={addBook} errors={errors} />} />
+          <Route path="/books/new" element={<BookForm addBook={addBook} setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading}/>}/>
+          <Route path="/reviews/:id/edit" element={<ReviewEdit loading={loading} loggedIn={loggedIn}/>}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
           <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors}/>} />
           <Route path="/signup" element={<Signup addUser={addUser} errors={errors} />} />
