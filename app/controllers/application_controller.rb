@@ -13,8 +13,12 @@ class ApplicationController < ActionController::API
     !!session[:user_id]
   end
 
-  def authorized 
+  def authorize 
     render json: { errors: ["You must be logged in"]}, status: :unauthorized unless logged_in?
+  end
+
+  def authorized
+
   end
 
 private

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     before_action :find_user, only: [:show]
-    skip_before_action :authorized, only: [:get_current_user, :create]
+    skip_before_action :authorize, only: [:get_current_user, :create]
 
     def get_current_user
         render json: current_user
