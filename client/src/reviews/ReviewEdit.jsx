@@ -1,8 +1,74 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 
-const ReviewEdit = () => {
+const ReviewEdit = ( {reviews, editReview, loading, loggedIn} ) => {
+
+    const [formData, setFormData] = useState({
+        book_id: "",
+        stars: "",
+        summary: ""
+    });
+    const {id} = useParams();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(reviews.length > 0) {
+            const review = reviews.find(review => review.id === parseInt(id, 10))
+            setFormData({
+                book_id: review.book_id,
+                stars: review.stars,
+                summary: review.summary
+            })
+        }
+    }, [reviews]);
+
+    const handleChange = (event) => {
+        setFormData({...formData, [event.target.name]: event.target.value})
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        fetch(`/reviews/${id}`, {
+            method: 'PATCH',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                editReview(data)
+                navigate("/reviews")
+            })
+
+    }
+
   return (
-    <div>ReviewEdit</div>
+    <form onSubmit={handleSubmit}>
+    <label>Book</label>
+    <input
+        type="text"
+        name="book_id"
+        value={formData.book_id}
+        onChange={handleChange}
+    />
+    <label>Stars</label>
+    <input
+        type="text"
+        name="stars"
+        value={formData.stars}
+        onChange={handleChange}
+    />
+    <label>Summary</label>
+    <input
+        type="text"
+        name="summary"
+        value={formData.summary}
+        onChange={handleChange}
+    />
+    <input type="submit" value="Update Review"/>
+</form>
   )
 }
 

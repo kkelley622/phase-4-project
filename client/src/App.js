@@ -113,6 +113,17 @@ function App() {
   const handleDeleteReview = (deletedReview) => {
     const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id);
     setReviews(updatedReviews)
+  };
+
+  const editReview = (updatedReview) => {
+    const updatedReviews = reviews.map(review => {
+      if(updatedReview.id === review.id) {
+        return updatedReview
+      } else {
+        return review;
+      }
+    })
+    setReviews(updatedReviews)
   }
 
   return (
@@ -123,7 +134,7 @@ function App() {
           <Route path="/books" element={<BooksList books={books} loggedIn={loggedIn} loading={loading}/>} />
           <Route path="/books/new" element={<BookForm addBook={addBook} setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading}/>}/>
-          <Route path="/reviews/:id/edit" element={<ReviewEdit loading={loading} loggedIn={loggedIn}/>}/>
+          <Route path="/reviews/:id/edit" element={<ReviewEdit reviews={reviews} editReview={editReview} loading={loading} loggedIn={loggedIn}/>}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
           <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors}/>} />
           <Route path="/signup" element={<Signup addUser={addUser} errors={errors} />} />
