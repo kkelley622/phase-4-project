@@ -1,6 +1,9 @@
 class ReviewsController < ApplicationController
 
     before_action :find_review, only: [:show, :update, :destroy]
+    before_action only: [:update, :destroy] do 
+        authorize_user_resource(@review.user_id)
+    end
 
     def index 
         if params[:user_id]
@@ -22,12 +25,8 @@ class ReviewsController < ApplicationController
     end
 
     def update
-        if @review.user_id == current_user.id 
-            @review.update!(review_params)
-            render json: @review
-        else 
-            render json: { errors: ["You are not authorized to edit this review."]}, status: :unauthorized
-        end 
+        @review.update!(review_params)
+        render json: @review
     end
 
     def destroy 
