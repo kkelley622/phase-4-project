@@ -3,12 +3,18 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
+  before_action :authorized 
+
   def current_user 
     User.find_by_id(session[:user_id])
   end
 
   def logged_in?
     !!session[:user_id]
+  end
+
+  def authorized 
+    render json: { errors: ["You must be logged in"]}, status: :unauthorized unless logged_in?
   end
 
 private

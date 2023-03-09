@@ -3,8 +3,13 @@ class ReviewsController < ApplicationController
     before_action :find_review, only: [:show, :update, :destroy]
 
     def index 
-        reviews = Review.all 
-        render json: reviews, status: :ok  
+        if params[:user_id]
+            user = User.find_by_id(params[:user_id])
+            @reviews = user.reviews
+        else
+        @reviews = Review.all
+        end
+        render json: @reviews, status: :ok 
     end
 
     def show 
