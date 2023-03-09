@@ -21,9 +21,13 @@ class ReviewsController < ApplicationController
         render json: review, status: :created
     end
 
-    def update 
-        @review.update!(review_params)
-        render json: @review, status: 202
+    def update
+        if @review.user_id == current_user.id 
+            @review.update!(review_params)
+            render json: @review
+        else 
+            render json: { errors: ["You are not authorized to edit this review."]}, status: :unauthorized
+        end 
     end
 
     def destroy 
