@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ( {setErrors, loginUser} ) => {
+const Login = ( {setErrors, loginUser, loading, loggedIn} ) => {
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!loading && loggedIn) {
+        navigate("/books")
+    }
+
+    return () => {
+        setErrors([])
+    }
+}, [loading, loggedIn])
 
   const [formData, setFormData] = useState({
     user_name: "",

@@ -1,6 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Signup = ( {addUser, errors} ) => {
+const Signup = ( {addUser, setErrors, loading, loggedIn} ) => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!loading && loggedIn) {
+            navigate("/books")
+        }
+
+        return () => {
+            setErrors([])
+        }
+    }, [loading, loggedIn])
 
     const [formData, setFormData] = useState({
         first_name: "",
@@ -22,6 +35,7 @@ const Signup = ( {addUser, errors} ) => {
             user_name: "",
             password: ""
         });
+        navigate("/reviews")
     };
 
   return (
@@ -54,13 +68,6 @@ const Signup = ( {addUser, errors} ) => {
             value={formData.password}
             onChange={handleChange}
         />
-        {errors.length > 0 && (
-            <ul style={{ color: "red" }}>
-                {errors.map((error) => (
-                    <li key={error}>{error}</li>
-                ))}
-            </ul>
-        )}
         <input type="submit" value="Create Account"/>
     </form>
   )

@@ -108,6 +108,7 @@ function App() {
     } else {
       setErrors(data.errors)
     }
+    
   };
 
   const handleDeleteReview = (deletedReview) => {
@@ -133,11 +134,11 @@ function App() {
         <Routes>
           <Route path="/books" element={<BooksList books={books} loggedIn={loggedIn} loading={loading}/>} />
           <Route path="/books/new" element={<BookForm addBook={addBook} setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
-          <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading}/>}/>
-          <Route path="/reviews/:id/edit" element={<ReviewEdit reviews={reviews} editReview={editReview} loading={loading} loggedIn={loggedIn}/>}/>
+          <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading} currentUser={currentUser} />}/>
+          <Route path="/reviews/:id/edit" element={<ReviewEdit reviews={reviews} editReview={editReview} loading={loading} loggedIn={loggedIn} currentUser={currentUser} />}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
-          <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors}/>} />
-          <Route path="/signup" element={<Signup addUser={addUser} errors={errors} />} />
+          <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
+          <Route path="/signup" element={<Signup addUser={addUser} setErrors={setErrors} loading={loading} loggedIn={loggedIn} />} />
         </Routes>
       </BrowserRouter>    
   );

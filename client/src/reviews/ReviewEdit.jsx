@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
-const ReviewEdit = ( {reviews, editReview, loading, loggedIn} ) => {
+const ReviewEdit = ( {reviews, editReview, loading, loggedIn, currentUser} ) => {
 
     const [formData, setFormData] = useState({
         book_id: "",
@@ -12,15 +12,24 @@ const ReviewEdit = ( {reviews, editReview, loading, loggedIn} ) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if(!loading && !loggedIn) {
+            navigate("/login")
+        }
+
         if(reviews.length > 0) {
-            const review = reviews.find(review => review.id === parseInt(id, 10))
+            const review = reviews.find(review => review.id === parseInt(id, 10));
+            console.log(review)
+            if(!loading && currentUser.id !== review.user.id) {
+                navigate("/home")
+            }
+            console.log(review)
             setFormData({
                 book_id: review.book_id,
                 stars: review.stars,
                 summary: review.summary
             })
         }
-    }, [reviews]);
+    }, [reviews, loading, loggedIn, currentUser]);
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value})
