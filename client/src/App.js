@@ -25,7 +25,7 @@ function App() {
     fetch("/get-current-user")
       .then(response => response.json())
       .then(data => {
-        if(!data.message) {
+        if(!data.errors) {
           loginUser(data)
         }
         setLoading(false)
