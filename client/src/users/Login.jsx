@@ -7,7 +7,7 @@ const Login = ( {setErrors, loginUser, loading, loggedIn} ) => {
 
   useEffect(() => {
     if(!loading && loggedIn) {
-        navigate("/books")
+        navigate("/")
     }
 
     return () => {
@@ -44,7 +44,7 @@ const Login = ( {setErrors, loginUser, loading, loggedIn} ) => {
       user_name: "",
       password: ""
     })
-    navigate("/books")
+    navigate("/")
   };
 
   return (

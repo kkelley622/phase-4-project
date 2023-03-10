@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BooksContext } from '../context/BooksContext';
 
-const BookForm = ( {addBook, setErrors, loading, loggedIn} ) => {
+const BookForm = ( {setErrors, loading, loggedIn} ) => {
 
     const navigate = useNavigate();
+    const {addBook} = useContext(BooksContext)
 
     useEffect(() => {
-        if(!loading && !loading) {
+        if(!loading && !loggedIn) {
             navigate("/login")
         }
         return() => {

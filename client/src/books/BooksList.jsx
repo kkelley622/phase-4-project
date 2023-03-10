@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { BooksContext } from '../context/BooksContext';
 import BookCard from './BookCard'
 
-const BooksList = ( {books, loggedIn, loading} ) => {
+const BooksList = ( {loggedIn, loading} ) => {
 
   const navigate = useNavigate();
+  const {books} = useContext(BooksContext);
 
   useEffect(() => {
     if(!loading && !loggedIn) {
