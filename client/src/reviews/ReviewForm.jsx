@@ -1,6 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const ReviewForm = ( {addReview, errors} ) => {
+const ReviewForm = ( {addReview, setErrors, loading, loggedIn} ) => {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!loading && !loggedIn) {
+            navigate("/login")
+        }
+        return() => {
+            setErrors([])
+        }
+    }, [loading, loggedIn]);
 
     const [formData, setFormData] = useState({
         book_id: "",

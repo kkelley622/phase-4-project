@@ -137,7 +137,7 @@ function App() {
           <Route path="/books/new" element={<BookForm setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading} currentUser={currentUser} />}/>
           <Route path="/reviews/:id/edit" element={<ReviewEdit reviews={reviews} editReview={editReview} loading={loading} loggedIn={loggedIn} currentUser={currentUser} />}/>
-          <Route path="/reviews/new" element={<ReviewForm addReview={addReview} errors={errors} />} />
+          <Route path="/reviews/new" element={<ReviewForm addReview={addReview} setErrors={setErrors} loading={loading} loggedIn={loggedIn} />} />
           <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
           <Route path="/signup" element={<Signup addUser={addUser} setErrors={setErrors} loading={loading} loggedIn={loggedIn} />} />
         </Routes>

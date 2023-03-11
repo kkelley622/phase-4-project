@@ -20,7 +20,7 @@ const ReviewEdit = ( {reviews, editReview, loading, loggedIn, currentUser} ) => 
             const review = reviews.find(review => review.id === parseInt(id, 10));
             console.log(review)
             if(!loading && currentUser.id !== review.user.id) {
-                navigate("/home")
+                navigate("/")
             }
             console.log(review)
             setFormData({
