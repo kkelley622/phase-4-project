@@ -12,7 +12,7 @@ const ReviewsList = ( {reviews, handleDeleteReview, loggedIn, loading, currentUs
     if(!loading && !loggedIn) {
       navigate("/login")
     }
-  }, [loading, loggedIn])
+  }, [loading, loggedIn, navigate])
 
   const reviewCards = reviews.map(review => <ReviewCard key={review.id} review={review} handleDeleteReview={handleDeleteReview} currentUser={currentUser} />)
 

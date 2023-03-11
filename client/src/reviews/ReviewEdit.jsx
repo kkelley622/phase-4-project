@@ -29,7 +29,7 @@ const ReviewEdit = ( {reviews, editReview, loading, loggedIn, currentUser} ) => 
                 summary: review.summary
             })
         }
-    }, [reviews, loading, loggedIn, currentUser]);
+    }, [reviews, loading, loggedIn, currentUser, navigate, id]);
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value})

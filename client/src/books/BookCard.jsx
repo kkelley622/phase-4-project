@@ -10,7 +10,7 @@ const BookCard = ( {book} ) => {
     <div>
       <h1>{book.title}</h1>
       <h2>Author: {book.author}</h2>
-      <img src={book.image_url} width={100} height={150}/>
+      <img src={book.image_url} alt="book-cover" width={100} height={150}/>
       <button onClick={() => navigate("/reviews/new")}>Add Review</button>
     </div>
   )

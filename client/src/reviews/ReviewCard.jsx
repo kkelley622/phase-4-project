@@ -16,7 +16,7 @@ const ReviewCard = ( {review, handleDeleteReview, currentUser} ) => {
 
   return (
     <div>
-      <img src={review.book.image_url} width={100} height={150} />
+      <img src={review.book.image_url} alt="book_cover" width={100} height={150} />
       <h2>{review.user.first_name} gives {review.book.title} {review.stars} ⭐</h2>
       <h3>Summary: {review.summary}</h3>
       {currentUser && currentUser.id === review.user.id ? <>

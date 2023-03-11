@@ -11,6 +11,7 @@ import Signup from './users/Signup';
 import Errors from './errors/Errors';
 import ReviewEdit from './reviews/ReviewEdit';
 import { BooksProvider } from './context/BooksContext';
+import UsersList from './users/UsersList';
 
 function App() {
 
@@ -138,6 +139,7 @@ function App() {
           <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading} currentUser={currentUser} />}/>
           <Route path="/reviews/:id/edit" element={<ReviewEdit reviews={reviews} editReview={editReview} loading={loading} loggedIn={loggedIn} currentUser={currentUser} />}/>
           <Route path="/reviews/new" element={<ReviewForm addReview={addReview} setErrors={setErrors} loading={loading} loggedIn={loggedIn} />} />
+          <Route path="/users" element={<UsersList users={users} loading={loading} loggedIn={loggedIn}/>}/>
           <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
           <Route path="/signup" element={<Signup addUser={addUser} setErrors={setErrors} loading={loading} loggedIn={loggedIn} />} />
         </Routes>

@@ -12,8 +12,10 @@ const Navbar = ( {loggedIn, logoutUser} ) => {
   const loggedInLinks = () => {
     return(
       <>
-        <li><Link to="/books">Books</Link></li>  
+        <li><Link to="/books">Books</Link></li>
+        <li><Link to="/books/new">Add Book</Link></li>  
         <li><Link to="/reviews">Reviews</Link></li>
+        <li><Link to="/users">Users</Link></li>
         <li><Link to="#" onClick={handleClick}>Logout</Link></li>
       </>
     )

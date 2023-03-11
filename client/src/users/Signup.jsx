@@ -13,7 +13,7 @@ const Signup = ( {addUser, setErrors, loading, loggedIn} ) => {
         return () => {
             setErrors([])
         }
-    }, [loading, loggedIn])
+    }, [loading, loggedIn, navigate, setErrors])
 
     const [formData, setFormData] = useState({
         first_name: "",

@@ -12,7 +12,7 @@ const BooksList = ( {loggedIn, loading} ) => {
     if(!loading && !loggedIn) {
       navigate("/login")
     }
-  }, [loading, loggedIn])
+  }, [loading, loggedIn, navigate])
 
 
   const bookCards = books.map(book => <BookCard key={book.id} book={book}/>)

@@ -14,7 +14,7 @@ const BookForm = ( {setErrors, loading, loggedIn} ) => {
         return() => {
             setErrors([])
         }
-    }, [loading, loggedIn]);
+    }, [loading, loggedIn, navigate, setErrors]);
 
     const [formData, setFormData] = useState({
         title: "",
