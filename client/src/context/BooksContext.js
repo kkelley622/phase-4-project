@@ -12,7 +12,7 @@ const BooksProvider = ( {children, setErrors} ) => {
             .then(data => setBooks(data))
         };
 
-        useEffect(loadBooks, [])
+    useEffect(loadBooks, [])
 
     async function addBook(event, bookObj) {
         event.preventDefault()

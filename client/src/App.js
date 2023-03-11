@@ -129,7 +129,7 @@ function App() {
 
   return (
       <BrowserRouter>
-      <BooksProvider>
+      <BooksProvider setErrors={setErrors}>
         <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
         <Errors errors={errors}/>
         <Routes>
