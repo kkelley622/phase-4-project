@@ -7,12 +7,15 @@ const BookCard = ( {book} ) => {
 
 
   return (
-    <div>
-      <h1>{book.title}</h1>
-      <h2>Author: {book.author}</h2>
-      <img src={book.image_url} alt="book-cover" width={100} height={150}/>
-      <button onClick={() => navigate("/reviews/new")}>Add Review</button>
-    </div>
+    <figure>
+      <div>
+        <h1>{book.title}</h1>
+        <h2>Author: {book.author}</h2>
+        <img src={book.image_url} alt="book-cover" width={100} height={150}/>
+        <br></br>
+        <button onClick={() => navigate("/reviews/new")}>Add Review</button>
+      </div>
+      </figure>
   )
 }
 
