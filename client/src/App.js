@@ -12,6 +12,7 @@ import Errors from './errors/Errors';
 import ReviewEdit from './reviews/ReviewEdit';
 import { BooksProvider } from './context/BooksContext';
 import UsersList from './users/UsersList';
+import Home from './Home';
 
 function App() {
 
@@ -140,6 +141,7 @@ function App() {
         <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
         <Errors errors={errors}/>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/books" element={<BooksList loggedIn={loggedIn} loading={loading}/>} />
           <Route path="/books/new" element={<BookForm setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
           <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading} currentUser={currentUser} />}/>

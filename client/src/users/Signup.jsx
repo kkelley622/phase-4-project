@@ -7,7 +7,7 @@ const Signup = ( {addUser, setErrors, loading, loggedIn} ) => {
 
     useEffect(() => {
         if(!loading && loggedIn) {
-            navigate("/books")
+            navigate("/")
         }
 
         return () => {
@@ -29,13 +29,6 @@ const Signup = ( {addUser, setErrors, loading, loggedIn} ) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         addUser(event, formData)
-        setFormData({
-            first_name: "",
-            last_name: "",
-            user_name: "",
-            password: ""
-        });
-        navigate("/reviews")
     };
 
   return (
