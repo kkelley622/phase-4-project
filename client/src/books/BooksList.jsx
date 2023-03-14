@@ -18,7 +18,7 @@ const BooksList = ( {loggedIn, loading} ) => {
   const bookCards = books.map(book => <BookCard key={book.id} book={book}/>)
 
   return (
-    <div>{bookCards}</div>
+    <div>{ bookCards }</div>
   )
 }
 

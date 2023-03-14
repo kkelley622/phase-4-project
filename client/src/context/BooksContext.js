@@ -7,12 +7,14 @@ const BooksProvider = ( {children, setErrors, loading, loggedIn} ) => {
     const [books, setBooks] = useState([]);
 
     const loadBooks = () => {
+      if(loggedIn) {
             fetch("/books")
             .then(response => response.json())
             .then(data => setBooks(data))
+      }
         };
 
-    useEffect(loadBooks, [loading, loggedIn])
+    useEffect(loadBooks, [loggedIn])
 
     async function addBook(event, bookObj) {
         event.preventDefault()

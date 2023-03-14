@@ -38,15 +38,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("/reviews")
-    .then(response => response.json())
-    .then(data => setReviews(data))
+      fetch("/reviews")
+        .then(response => response.json())
+        .then(data => setReviews(data))
   }, []);
 
   useEffect(() => {
-    fetch("/users")
-    .then(response => response.json())
-    .then(data => setUsers(data))
+      fetch("/users")
+        .then(response => response.json())
+        .then(data => setUsers(data))
   }, []);
 
   const loginUser = (user) => {
