@@ -17,11 +17,12 @@ const ReviewCard = ( {review, handleDeleteReview, currentUser} ) => {
   return (
     <div>
       <img src={review.book.image_url} alt="book_cover" width={100} height={150} />
-      <h2>{review.user.first_name} gives {review.book.title} {review.stars} ⭐</h2>
-      <h3>Summary: {review.summary}</h3>
+      <h2>{review.stars} ⭐</h2>
+      <h3>{review.summary} -{review.user.first_name}</h3>
       {currentUser && currentUser.id === review.user.id ? <>
         <button onClick={() => navigate(`/reviews/${review.id}/edit`)}>Edit</button>
-        <button onClick={deleteReview}>Delete</button> </> : null}
+        <button onClick={deleteReview}>Delete</button> 
+        </> : null}
     </div>
   )
 }

@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const Navbar = ( {loggedIn, logoutUser} ) => {
 
   const handleClick = () => {
-    fetch('/logout', {method: 'DELETE'})
-    logoutUser();
-  }
+    fetch('/logout', { method: 'DELETE' })
+    .then(() => logoutUser());
+  };
 
   const loggedInLinks = () => {
     return(

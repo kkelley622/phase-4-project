@@ -24,7 +24,7 @@ const UsersProvider = ( { children, setErrors, setLoading } ) => {
         })
     }
 
-    useEffect(getCurrentUser, [setLoading])
+    useEffect(getCurrentUser, [])
 
     const loginUser = (user) => {
         setCurrentUser(user);

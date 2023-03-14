@@ -13,7 +13,7 @@ const Login = ( {setErrors, loginUser, loading, loggedIn} ) => {
     return () => {
         setErrors([])
     }
-}, [loading, loggedIn, navigate, setErrors])
+}, [loading, loggedIn])
 
   const [formData, setFormData] = useState({
     user_name: "",
@@ -24,27 +24,26 @@ const Login = ( {setErrors, loginUser, loading, loggedIn} ) => {
     setFormData({...formData, [event.target.name]: event.target.value})
   };
 
-  async function handleSubmit(event) {
-    event.preventDefault()
-    const response = await fetch("/login", {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    fetch("/login", {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(formData)
-    });
-    const data = await (response.json());
-    if(response.ok) {
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.errors) {
+      setErrors(data.errors);
+    } else {
       loginUser(data)
       setErrors([])
-    } else {
-      setErrors(data.errors)
-    }
-    setFormData({
-      user_name: "",
-      password: ""
+      navigate("/books")
+      }
     })
-    navigate("/")
   };
 
   return (

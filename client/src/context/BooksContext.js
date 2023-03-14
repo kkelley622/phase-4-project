@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react"
 
 const BooksContext = createContext(null);
 
-const BooksProvider = ( {children, setErrors} ) => {
+const BooksProvider = ( {children, setErrors, loading, loggedIn} ) => {
 
     const [books, setBooks] = useState([]);
 
@@ -12,7 +12,7 @@ const BooksProvider = ( {children, setErrors} ) => {
             .then(data => setBooks(data))
         };
 
-    useEffect(loadBooks, [])
+    useEffect(loadBooks, [loading, loggedIn])
 
     async function addBook(event, bookObj) {
         event.preventDefault()
@@ -24,7 +24,7 @@ const BooksProvider = ( {children, setErrors} ) => {
           body: JSON.stringify(bookObj),
         });
         const data = await (response).json();
-        if(response.ok) {
+        if(data.ok) {
           setBooks([data, ...books]);
           } else {
             setErrors(data.errors)

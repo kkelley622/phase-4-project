@@ -6,7 +6,7 @@ import BookCard from './BookCard'
 const BooksList = ( {loggedIn, loading} ) => {
 
   const navigate = useNavigate();
-  const {books} = useContext(BooksContext);
+  const { books } = useContext(BooksContext);
 
   useEffect(() => {
     if(!loading && !loggedIn) {
@@ -14,7 +14,7 @@ const BooksList = ( {loggedIn, loading} ) => {
     }
   }, [loading, loggedIn, navigate])
 
-
+  console.log("books", books)
   const bookCards = books.map(book => <BookCard key={book.id} book={book}/>)
 
   return (

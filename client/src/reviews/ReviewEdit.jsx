@@ -8,6 +8,7 @@ const ReviewEdit = ( {reviews, editReview, loading, loggedIn, currentUser} ) => 
         stars: "",
         summary: ""
     });
+
     const {id} = useParams();
     const navigate = useNavigate();
 

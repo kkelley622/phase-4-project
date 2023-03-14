@@ -3,7 +3,7 @@ import React, { useState, useEffect} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './navigation/Navbar';
 import BooksList from './books/BooksList';
-import ReviewsList from './reviews/ReviewsList'
+import ReviewsList from './reviews/ReviewsList';
 import Login from './users/Login';
 import BookForm from './books/BookForm';
 import ReviewForm from './reviews/ReviewForm';
@@ -58,6 +58,8 @@ function App() {
     setCurrentUser(null);
     setLoggedIn(false);
   };
+
+  console.log("current user", currentUser)
 
   // async function addBook(event, bookObj) {
   //   event.preventDefault()
@@ -130,7 +132,7 @@ function App() {
 
   return (
       <BrowserRouter>
-      <BooksProvider setErrors={setErrors}>
+      <BooksProvider setErrors={setErrors} loading={loading} loggedIn={loggedIn}>
         <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
         <Errors errors={errors}/>
         <Routes>

@@ -6,18 +6,16 @@ const ReviewsList = ( {reviews, handleDeleteReview, loggedIn, loading, currentUs
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
-
     if(!loading && !loggedIn) {
       navigate("/login")
     }
-  }, [loading, loggedIn, navigate])
+  }, [loading, loggedIn])
 
-  const reviewCards = reviews.map(review => <ReviewCard key={review.id} review={review} handleDeleteReview={handleDeleteReview} currentUser={currentUser} />)
+  const reviewCards = reviews.map((review, idx) => <ReviewCard key={ idx } review={ review } handleDeleteReview={handleDeleteReview} currentUser={currentUser} />)
 
   return (
-    <div>{reviewCards}</div>
+    <div>{ reviewCards }</div>
   )
 }
 
