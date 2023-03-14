@@ -38,16 +38,20 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if(loggedIn){
       fetch("/reviews")
         .then(response => response.json())
         .then(data => setReviews(data))
-  }, []);
+    }
+  }, [loggedIn]);
 
   useEffect(() => {
-      fetch("/users")
-        .then(response => response.json())
-        .then(data => setUsers(data))
-  }, []);
+      if(loggedIn){
+        fetch("/users")
+          .then(response => response.json())
+          .then(data => setUsers(data))
+      }
+  }, [loggedIn]);
 
   const loginUser = (user) => {
     setCurrentUser(user);
