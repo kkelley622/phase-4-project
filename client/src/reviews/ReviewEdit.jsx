@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import { ReviewsContext } from '../context/ReviewsContext';
 
-const ReviewEdit = ( {reviews, editReview, loading, loggedIn, currentUser} ) => {
+const ReviewEdit = ( { loading, loggedIn, currentUser } ) => {
+    const { reviews, editReview } = useContext(ReviewsContext);
 
     const [formData, setFormData] = useState({
         book_id: "",

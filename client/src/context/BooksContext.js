@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react"
 
 const BooksContext = createContext(null);
 
-const BooksProvider = ( {children, setErrors, loading, loggedIn} ) => {
+const BooksProvider = ( {children, setErrors, loggedIn} ) => {
 
     const [books, setBooks] = useState([]);
 

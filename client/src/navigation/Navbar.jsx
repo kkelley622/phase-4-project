@@ -9,6 +9,8 @@ const Navbar = ( {loggedIn, logoutUser} ) => {
     .then(() => logoutUser());
   };
 
+
+  
   const loggedInLinks = () => {
     return(
       <>

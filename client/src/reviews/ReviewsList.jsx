@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReviewCard from './ReviewCard';
 import { useNavigate } from 'react-router-dom';
+import { ReviewsContext } from '../context/ReviewsContext';
 
-const ReviewsList = ( {reviews, handleDeleteReview, loggedIn, loading, currentUser} ) => {
-
+const ReviewsList = ( {loggedIn, loading, currentUser} ) => {
+  const { reviews, handleDeleteReview } = useContext(ReviewsContext);
   const navigate = useNavigate();
 
   useEffect(() => {

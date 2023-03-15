@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ReviewsContext } from '../context/ReviewsContext';
 
-const ReviewForm = ( {addReview, setErrors, loading, loggedIn} ) => {
-
+const ReviewForm = ({ setErrors, loading, loggedIn }) => {
+    const { addReview } = useContext(ReviewsContext);
     const navigate = useNavigate();
 
     useEffect(() => {

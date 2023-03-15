@@ -13,11 +13,9 @@ import ReviewEdit from './reviews/ReviewEdit';
 import { BooksProvider } from './context/BooksContext';
 import UsersList from './users/UsersList';
 import Home from './Home';
+import { ReviewsProvider } from './context/ReviewsContext';
 
 function App() {
-
-  // const [books, setBooks] = useState([]);
-  const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,20 +29,10 @@ function App() {
         if(!data.errors) {
           loginUser(data)
         }
-        setLoading(false)
+          setLoading(false)
       })
-    // fetch("/books")
-    //   .then(response => response.json())
-    //   .then(data => setBooks(data))
-  }, []);
+  },[]);
 
-  useEffect(() => {
-    if(loggedIn){
-      fetch("/reviews")
-        .then(response => response.json())
-        .then(data => setReviews(data))
-    }
-  }, [loggedIn]);
 
   useEffect(() => {
       if(loggedIn){
@@ -64,41 +52,6 @@ function App() {
     setLoggedIn(false);
   };
 
-  console.log("current user", currentUser)
-
-  // async function addBook(event, bookObj) {
-  //   event.preventDefault()
-  //   const response = await fetch("/books", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(bookObj),
-  //   });
-  //   const data = await (response).json();
-  //   if(response.ok) {
-  //     setBooks([data, ...books]);
-  //     } else {
-  //       setErrors(data.errors)
-  //     }
-  //   };
-
-  async function addReview(event, reviewObj) {
-    event.preventDefault()
-    const response = await fetch("/reviews", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(reviewObj),
-    });
-    const data = await (response).json();
-    if(response.ok) {
-      setReviews([data, ...reviews]);
-      } else {
-        setErrors(data.errors)
-      }
-    };
 
   async function addUser(event, userObj) {
     event.preventDefault()
@@ -119,38 +72,25 @@ function App() {
     
   };
 
-  const handleDeleteReview = (deletedReview) => {
-    const updatedReviews = reviews.filter((review) => review.id !== deletedReview.id);
-    setReviews(updatedReviews)
-  };
-
-  const editReview = (updatedReview) => {
-    const updatedReviews = reviews.map(review => {
-      if(updatedReview.id === review.id) {
-        return updatedReview
-      } else {
-        return review;
-      }
-    })
-    setReviews(updatedReviews)
-  }
 
   return (
       <BrowserRouter>
       <BooksProvider setErrors={setErrors} loading={loading} loggedIn={loggedIn}>
+      <ReviewsProvider setErrors={setErrors} loading={loading} loggedIn={loggedIn}>
         <Navbar loggedIn={loggedIn} logoutUser={logoutUser}/>
         <Errors errors={errors}/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/books" element={<BooksList loggedIn={loggedIn} loading={loading}/>} />
           <Route path="/books/new" element={<BookForm setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
-          <Route path="/reviews" element={<ReviewsList reviews={reviews} handleDeleteReview={handleDeleteReview} loggedIn={loggedIn} loading={loading} currentUser={currentUser} />}/>
-          <Route path="/reviews/:id/edit" element={<ReviewEdit reviews={reviews} editReview={editReview} loading={loading} loggedIn={loggedIn} currentUser={currentUser} />}/>
-          <Route path="/reviews/new" element={<ReviewForm addReview={addReview} setErrors={setErrors} loading={loading} loggedIn={loggedIn} />} />
+          <Route path="/reviews" element={<ReviewsList loggedIn={loggedIn} loading={loading} currentUser={currentUser} />}/>
+          <Route path="/reviews/:id/edit" element={<ReviewEdit loading={loading} loggedIn={loggedIn} currentUser={currentUser} />}/>
+          <Route path="/reviews/new" element={<ReviewForm setErrors={setErrors} loading={loading} loggedIn={loggedIn} />} />
           <Route path="/users" element={<UsersList users={users} loading={loading} loggedIn={loggedIn}/>}/>
           <Route path="/login" element={<Login loginUser={loginUser} setErrors={setErrors} loading={loading} loggedIn={loggedIn}/>} />
           <Route path="/signup" element={<Signup addUser={addUser} setErrors={setErrors} loading={loading} loggedIn={loggedIn} />} />
         </Routes>
+        </ReviewsProvider>
         </BooksProvider>
       </BrowserRouter>    
   );
