@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UsersContext } from '../context/UsersContext';
 
-const Login = ( {setErrors, loginUser, loading, loggedIn} ) => {
+const Login = ( {setErrors, loading} ) => {
+  const {loggedIn, loginUser} = useContext(UsersContext);
 
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ const Login = ( {setErrors, loginUser, loading, loggedIn} ) => {
     return () => {
         setErrors([])
     }
-}, [loading, loggedIn])
+}, [loading, loggedIn, navigate, setErrors])
 
   const [formData, setFormData] = useState({
     user_name: "",

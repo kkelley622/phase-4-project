@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BooksContext } from '../context/BooksContext';
+import { UsersContext } from '../context/UsersContext';
 
-const BookForm = ( {setErrors, loading, loggedIn} ) => {
+const BookForm = ( {setErrors, loading} ) => {
 
     const navigate = useNavigate();
-    const {addBook} = useContext(BooksContext)
+    const {addBook} = useContext(BooksContext);
+    const {loggedIn} = useContext(UsersContext);
 
     useEffect(() => {
         if(!loading && !loggedIn) {

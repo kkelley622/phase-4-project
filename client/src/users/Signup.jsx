@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UsersContext } from '../context/UsersContext';
 
-const Signup = ( {addUser, setErrors, loading, loggedIn} ) => {
+const Signup = ( {setErrors, loading} ) => {
+    const {addUser, loggedIn} = useContext(UsersContext);
 
     const navigate = useNavigate();
 

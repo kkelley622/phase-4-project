@@ -1,11 +1,13 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { UsersContext } from "./UsersContext";
 
 const ReviewsContext = createContext(null);
 
-const ReviewsProvider = ({ children, setErrors, loggedIn }) => {
+const ReviewsProvider = ({ children, setErrors }) => {
     const [reviews, setReviews] = useState([]);
+    const {loggedIn} = useContext(UsersContext);
 
-    const loadReviews = useEffect(() => {
+    useEffect(() => {
         if(loggedIn){
           fetch("/reviews")
             .then(response => response.json())

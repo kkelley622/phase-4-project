@@ -1,10 +1,12 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
+import { UsersContext } from "./UsersContext";
 
 const BooksContext = createContext(null);
 
-const BooksProvider = ( {children, setErrors, loggedIn} ) => {
+const BooksProvider = ( {children, setErrors} ) => {
 
     const [books, setBooks] = useState([]);
+    const { loggedIn } = useContext(UsersContext);
 
     const loadBooks = () => {
       if(loggedIn) {

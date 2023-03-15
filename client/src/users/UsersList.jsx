@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UsersContext } from '../context/UsersContext';
 
-const UsersList = ({ users, loading, loggedIn }) => {
-
+const UsersList = ( {loading} ) => {
+    const {users, loggedIn} = useContext(UsersContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -12,7 +13,7 @@ const UsersList = ({ users, loading, loggedIn }) => {
         }
       }, [loading, loggedIn, navigate])
     
-    const usersList = users.map(user => <li key={user.id}>{user.first_name}</li>)
+    const usersList = users?.map(user => <li key={user.id}>{user.first_name}</li>)
 
 
   return (

@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ReviewsContext } from '../context/ReviewsContext';
+import { UsersContext } from '../context/UsersContext';
 
-const ReviewCard = ( { review, currentUser } ) => {
-
+const ReviewCard = ({ review }) => {
+  const {currentUser} = useContext(UsersContext);
   const navigate = useNavigate();
-  const {  handleDeleteReview } = useContext(ReviewsContext);
+  const {handleDeleteReview} = useContext(ReviewsContext);
 
   async function deleteReview() {
     const response = await fetch(`/reviews/${review.id}`, {

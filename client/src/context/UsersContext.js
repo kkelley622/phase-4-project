@@ -8,9 +8,11 @@ const UsersProvider = ( { children, setErrors, setLoading } ) => {
     const [loggedIn, setLoggedIn] = useState(false);
 
     const loadUsers = () => {
+      if(loggedIn){
         fetch("/users")
-        .then(response => response.json())
-        .then(data => setUsers(data))
+          .then(response => response.json())
+          .then(data => setUsers(data))
+      }
     };
 
    const getCurrentUser = () => {
@@ -20,11 +22,13 @@ const UsersProvider = ( { children, setErrors, setLoading } ) => {
           if(!data.errors) {
             loginUser(data)
           }
+          
           setLoading(false)
         })
     }
 
-    useEffect(getCurrentUser, [])
+    useEffect(getCurrentUser, [setLoading])
+    useEffect(loadUsers, [loggedIn])
 
     const loginUser = (user) => {
         setCurrentUser(user);
@@ -56,7 +60,7 @@ const UsersProvider = ( { children, setErrors, setLoading } ) => {
     };
 
     return(
-        <UsersProvider value={{ users, loggedIn, currentUser, logoutUser, loadUsers, addUser, getCurrentUser }}>{ children }</UsersProvider>
+        <UsersContext.Provider value={{ users, currentUser, loggedIn, loginUser, logoutUser, addUser }}>{ children }</UsersContext.Provider>
     )
 
 }
