@@ -4,7 +4,7 @@ import { ReviewsContext } from '../context/ReviewsContext';
 import { UsersContext } from '../context/UsersContext';
 import ReviewCard from './ReviewCard';
 
-const ReviewsList = ( {loading} ) => {
+const ReviewsList = ({ loading }) => {
 
   const navigate = useNavigate();
   const {reviews, handleDeleteReview} = useContext(ReviewsContext);

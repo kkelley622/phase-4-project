@@ -15,32 +15,35 @@ import UsersList from './users/UsersList';
 import { BooksProvider } from './context/BooksContext';
 import { ReviewsProvider } from './context/ReviewsContext';
 import { UsersProvider } from './context/UsersContext';
+import { ErrorsProvider } from './context/ErrorsContext';
 
 function App() {
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
 
   return (
       <BrowserRouter>
-        <UsersProvider setErrors={setErrors} setLoading={setLoading}>
-        <BooksProvider setErrors={setErrors} loading={loading}>
-        <ReviewsProvider setErrors={setErrors} loading={loading}>
+        <ErrorsProvider>
+        <UsersProvider setLoading={setLoading}>
+        <BooksProvider loading={loading}>
+        <ReviewsProvider loading={loading}>
          <Navbar />
-         <Errors errors={errors}/>
+         <Errors />
          <Routes>
            <Route path="/" element={<Home />} />
            <Route path="/books" element={<BooksList loading={loading}/>} />
-           <Route path="/books/new" element={<BookForm setErrors={setErrors} loading={loading} />} />
+           <Route path="/books/new" element={<BookForm loading={loading} />} />
            <Route path="/reviews" element={<ReviewsList loading={loading} />}/>
            <Route path="/reviews/:id/edit" element={<ReviewEdit loading={loading} />}/>
-           <Route path="/reviews/new" element={<ReviewForm setErrors={setErrors} loading={loading} />} />
+           <Route path="/reviews/new" element={<ReviewForm loading={loading} />} />
            <Route path="/users" element={<UsersList loading={loading}/>}/>
-           <Route path="/login" element={<Login setErrors={setErrors} loading={loading} />} />
-           <Route path="/signup" element={<Signup setErrors={setErrors} loading={loading} />} />
+           <Route path="/login" element={<Login loading={loading} />} />
+           <Route path="/signup" element={<Signup loading={loading} />} />
          </Routes>
         </ReviewsProvider>
         </BooksProvider>
         </UsersProvider>
+        </ErrorsProvider>
       </BrowserRouter>     
   );
 }

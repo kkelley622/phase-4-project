@@ -1,12 +1,14 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { ErrorsContext } from "./ErrorsContext";
 
 const UsersContext = createContext({});
 
-const UsersProvider = ( { children, setErrors, setLoading } ) => {
-  
+const UsersProvider = ({ children, setLoading }) => {
+
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
+    const {setErrors} = useContext(ErrorsContext);
 
     const loadUsers = () => {
       if(loggedIn){

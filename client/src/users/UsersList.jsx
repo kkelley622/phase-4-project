@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UsersContext } from '../context/UsersContext';
 
-const UsersList = ( {loading} ) => {
+const UsersList = ({ loading }) => {
     
     const navigate = useNavigate();
     const {users, loggedIn} = useContext(UsersContext);

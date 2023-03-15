@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { UsersContext } from '../context/UsersContext';
 
 
-const Navbar = ( ) => {
-  
+const Navbar = () => {
+
   const {loggedIn, logoutUser} = useContext(UsersContext);
 
   const handleClick = () => {

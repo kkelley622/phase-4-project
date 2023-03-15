@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ErrorsContext } from '../context/ErrorsContext';
 import { ReviewsContext } from '../context/ReviewsContext';
 import { UsersContext } from '../context/UsersContext';
 
-const ReviewForm = ({ setErrors, loading }) => {
+const ReviewForm = ({ loading }) => {
     
     const navigate = useNavigate();
     const {addReview} = useContext(ReviewsContext);
     const {loggedIn} = useContext(UsersContext);
+    const {setErrors} = useContext(ErrorsContext);
 
     useEffect(() => {
         if(!loading && !loggedIn) {

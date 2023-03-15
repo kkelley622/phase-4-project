@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ErrorsContext } from '../context/ErrorsContext';
 import { UsersContext } from '../context/UsersContext';
 
-const Signup = ( {setErrors, loading} ) => {
+const Signup = ({ loading }) => {
 
     const navigate = useNavigate();
     const {addUser, loggedIn} = useContext(UsersContext);
+    const {setErrors} = useContext(ErrorsContext);
 
 
     useEffect(() => {

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ErrorsContext } from '../context/ErrorsContext'
 
-const Errors = ({ errors }) => {
+const Errors = () => {
+
+  const {errors} = useContext(ErrorsContext);
   
-    const errorsList = errors.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
+  const errorsList = errors.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
 
   return (
     <ul>
