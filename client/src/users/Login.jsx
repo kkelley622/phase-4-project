@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { UsersContext } from '../context/UsersContext';
 
 const Login = ( {setErrors, loading} ) => {
-  const {loggedIn, loginUser} = useContext(UsersContext);
 
   const navigate = useNavigate();
+  const {loggedIn, loginUser} = useContext(UsersContext);
+
 
   useEffect(() => {
     if(!loading && loggedIn) {
@@ -15,7 +16,7 @@ const Login = ( {setErrors, loading} ) => {
     return () => {
         setErrors([])
     }
-}, [loading, loggedIn, navigate, setErrors])
+}, [loading, loggedIn, navigate, setErrors]);
 
   const [formData, setFormData] = useState({
     user_name: "",
@@ -68,7 +69,7 @@ const Login = ( {setErrors, loading} ) => {
       />
       <input type="submit" value="Login" />
     </form>
-  )
-}
+  );
+};
 
 export default Login

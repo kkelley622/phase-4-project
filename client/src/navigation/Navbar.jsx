@@ -4,6 +4,7 @@ import { UsersContext } from '../context/UsersContext';
 
 
 const Navbar = ( ) => {
+  
   const {loggedIn, logoutUser} = useContext(UsersContext);
 
   const handleClick = () => {

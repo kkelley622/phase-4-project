@@ -5,7 +5,6 @@ const BookCard = ({ book }) => {
 
   const navigate = useNavigate();
 
-
   return (
     <figure>
       <div>

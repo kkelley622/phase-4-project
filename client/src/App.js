@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './navigation/Navbar';
+import Home from './Home';
 import BooksList from './books/BooksList';
 import ReviewsList from './reviews/ReviewsList';
 import Login from './users/Login';
@@ -10,21 +11,20 @@ import ReviewForm from './reviews/ReviewForm';
 import Signup from './users/Signup';
 import Errors from './errors/Errors';
 import ReviewEdit from './reviews/ReviewEdit';
-import { BooksProvider } from './context/BooksContext';
 import UsersList from './users/UsersList';
-import Home from './Home';
+import { BooksProvider } from './context/BooksContext';
 import { ReviewsProvider } from './context/ReviewsContext';
 import { UsersProvider } from './context/UsersContext';
 
 function App() {
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   return (
       <BrowserRouter>
-      <UsersProvider setErrors={setErrors} setLoading={setLoading}>
-       <BooksProvider setErrors={setErrors} loading={loading}>
-       <ReviewsProvider setErrors={setErrors} loading={loading}>
+        <UsersProvider setErrors={setErrors} setLoading={setLoading}>
+        <BooksProvider setErrors={setErrors} loading={loading}>
+        <ReviewsProvider setErrors={setErrors} loading={loading}>
          <Navbar />
          <Errors errors={errors}/>
          <Routes>
@@ -38,11 +38,10 @@ function App() {
            <Route path="/login" element={<Login setErrors={setErrors} loading={loading} />} />
            <Route path="/signup" element={<Signup setErrors={setErrors} loading={loading} />} />
          </Routes>
-         </ReviewsProvider>
-     </BooksProvider>
+        </ReviewsProvider>
+        </BooksProvider>
         </UsersProvider>
       </BrowserRouter>     
-      
   );
 }
 

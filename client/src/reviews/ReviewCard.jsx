@@ -4,8 +4,9 @@ import { ReviewsContext } from '../context/ReviewsContext';
 import { UsersContext } from '../context/UsersContext';
 
 const ReviewCard = ({ review }) => {
-  const {currentUser} = useContext(UsersContext);
+
   const navigate = useNavigate();
+  const {currentUser} = useContext(UsersContext);
   const {handleDeleteReview} = useContext(ReviewsContext);
 
   async function deleteReview() {
@@ -14,7 +15,7 @@ const ReviewCard = ({ review }) => {
     });
     const data = await ((response).json());
     handleDeleteReview(data)
-  }
+  };
 
 
   return (

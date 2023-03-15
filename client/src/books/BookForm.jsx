@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BooksContext } from '../context/BooksContext';
 import { UsersContext } from '../context/UsersContext';
 
-const BookForm = ( {setErrors, loading} ) => {
+const BookForm = ({ setErrors, loading }) => {
 
     const navigate = useNavigate();
     const {addBook} = useContext(BooksContext);
@@ -61,7 +61,6 @@ const BookForm = ( {setErrors, loading} ) => {
             value={formData.image_url}
             onChange={handleChange}
         />
-      
         <input type="submit" />
     </form>
   )

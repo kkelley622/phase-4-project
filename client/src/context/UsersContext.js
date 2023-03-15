@@ -3,6 +3,7 @@ import { createContext, useState, useEffect } from "react";
 const UsersContext = createContext({});
 
 const UsersProvider = ( { children, setErrors, setLoading } ) => {
+  
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
@@ -56,7 +57,6 @@ const UsersProvider = ( { children, setErrors, setLoading } ) => {
         } else {
           setErrors(data.errors)
         }
-        
     };
 
     return(

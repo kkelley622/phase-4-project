@@ -4,9 +4,10 @@ import { ReviewsContext } from '../context/ReviewsContext';
 import { UsersContext } from '../context/UsersContext';
 
 const ReviewForm = ({ setErrors, loading }) => {
+    
+    const navigate = useNavigate();
     const {addReview} = useContext(ReviewsContext);
     const {loggedIn} = useContext(UsersContext);
-    const navigate = useNavigate();
 
     useEffect(() => {
         if(!loading && !loggedIn) {
@@ -21,11 +22,11 @@ const ReviewForm = ({ setErrors, loading }) => {
         book_id: "",
         stars: "",
         summary: "",
-    })
+    });
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value})
-    }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -35,7 +36,7 @@ const ReviewForm = ({ setErrors, loading }) => {
             stars: "",
             summary: "",
         })
-    }
+    };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -62,7 +63,7 @@ const ReviewForm = ({ setErrors, loading }) => {
             />
             <input type="submit" />
         </form>
-    )
-}
+    );
+};
 
 export default ReviewForm

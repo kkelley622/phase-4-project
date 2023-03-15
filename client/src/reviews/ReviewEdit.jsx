@@ -4,17 +4,17 @@ import { ReviewsContext } from '../context/ReviewsContext';
 import { UsersContext } from '../context/UsersContext';
 
 const ReviewEdit = ({ loading }) => {
+
+    const navigate = useNavigate();
     const {reviews, editReview} = useContext(ReviewsContext);
     const {loggedIn, currentUser} = useContext(UsersContext);
+    const {id} = useParams();
 
     const [formData, setFormData] = useState({
         book_id: "",
         stars: "",
         summary: ""
     });
-
-    const {id} = useParams();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if(!loading && !loggedIn) {
@@ -83,7 +83,7 @@ const ReviewEdit = ({ loading }) => {
     />
     <input type="submit" value="Update Review"/>
 </form>
-  )
-}
+  );
+};
 
 export default ReviewEdit

@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
-import ReviewCard from './ReviewCard';
 import { useNavigate } from 'react-router-dom';
 import { ReviewsContext } from '../context/ReviewsContext';
 import { UsersContext } from '../context/UsersContext';
+import ReviewCard from './ReviewCard';
 
 const ReviewsList = ( {loading} ) => {
+
+  const navigate = useNavigate();
   const {reviews, handleDeleteReview} = useContext(ReviewsContext);
   const {loggedIn, currentUser} = useContext(UsersContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if(!loading && !loggedIn) {
@@ -19,7 +20,7 @@ const ReviewsList = ( {loading} ) => {
 
   return (
     <div>{ reviewCards }</div>
-  )
-}
+  );
+};
 
 export default ReviewsList

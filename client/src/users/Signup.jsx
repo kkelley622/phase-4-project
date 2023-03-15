@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { UsersContext } from '../context/UsersContext';
 
 const Signup = ( {setErrors, loading} ) => {
-    const {addUser, loggedIn} = useContext(UsersContext);
 
     const navigate = useNavigate();
+    const {addUser, loggedIn} = useContext(UsersContext);
+
 
     useEffect(() => {
         if(!loading && loggedIn) {
@@ -65,7 +66,7 @@ const Signup = ( {setErrors, loading} ) => {
         />
         <input type="submit" value="Create Account"/>
     </form>
-  )
-}
+  );
+};
 
 export default Signup
