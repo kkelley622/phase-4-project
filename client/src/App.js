@@ -16,6 +16,7 @@ import { BooksProvider } from './context/BooksContext';
 import { ReviewsProvider } from './context/ReviewsContext';
 import { UsersProvider } from './context/UsersContext';
 import { ErrorsProvider } from './context/ErrorsContext';
+import UserReviews from './reviews/UserReviews';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -36,6 +37,7 @@ function App() {
            <Route path="/reviews/:id/edit" element={<ReviewEdit loading={loading} />}/>
            <Route path="/reviews/new" element={<ReviewForm loading={loading} />} />
            <Route path="/users" element={<UsersList loading={loading}/>}/>
+           <Route path="/users/:user_id/reviews" element={<UserReviews />} />
            <Route path="/login" element={<Login loading={loading} />} />
            <Route path="/signup" element={<Signup loading={loading} />} />
          </Routes>

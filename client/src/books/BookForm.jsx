@@ -38,6 +38,7 @@ const BookForm = ({ loading }) => {
             author: "",
             image_url: ""
         })
+        navigate("/books");
     }
 
   return (

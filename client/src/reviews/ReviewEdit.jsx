@@ -23,7 +23,6 @@ const ReviewEdit = ({ loading }) => {
 
         if(reviews.length > 0) {
             const review = reviews.find(review => review.id === parseInt(id, 10));
-            console.log(review)
             if(!loading && currentUser.id !== review.user.id) {
                 navigate("/")
             }

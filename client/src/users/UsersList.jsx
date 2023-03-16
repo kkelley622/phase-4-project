@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UsersContext } from '../context/UsersContext';
 
 const UsersList = ({ loading }) => {
@@ -14,11 +14,11 @@ const UsersList = ({ loading }) => {
         }
       }, [loading, loggedIn, navigate])
     
-    const usersList = users?.map(user => <li key={user.id}>{user.first_name}</li>)
+  const usersList = users.map(user => <li key={user.id}><Link to={`/users/${ user.id }/reviews`}>{user.first_name}</Link></li>)
 
 
   return (
-    <ul>{usersList}</ul>
+    <ul>{ usersList }</ul>
   );
 };
 

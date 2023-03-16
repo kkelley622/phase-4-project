@@ -16,7 +16,6 @@ const BooksList = ({ loading }) => {
     }
   }, [loading, loggedIn, navigate]);
 
-  console.log("books", books)
   const bookCards = books.map(book => <BookCard key={book.id} book={book}/>)
 
   return (

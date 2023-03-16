@@ -5,7 +5,7 @@ const Errors = () => {
 
   const {errors} = useContext(ErrorsContext);
   
-  const errorsList = errors.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
+  const errorsList = errors?.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
 
   return (
     <ul>
