@@ -18,7 +18,6 @@ import { UsersProvider } from './context/UsersContext';
 import { ErrorsProvider } from './context/ErrorsContext';
 
 function App() {
-  // const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
 
   return (

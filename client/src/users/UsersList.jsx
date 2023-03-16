@@ -19,7 +19,7 @@ const UsersList = ({ loading }) => {
 
   return (
     <ul>{usersList}</ul>
-  )
-}
+  );
+};
 
 export default UsersList

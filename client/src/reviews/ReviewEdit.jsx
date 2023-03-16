@@ -60,29 +60,30 @@ const ReviewEdit = ({ loading }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-    <label>Book</label>
-    <input
-        type="text"
-        name="book_id"
-        value={formData.book_id}
-        onChange={handleChange}
-    />
-    <label>Stars</label>
-    <input
-        type="text"
-        name="stars"
-        value={formData.stars}
-        onChange={handleChange}
-    />
-    <label>Summary</label>
-    <input
-        type="text"
-        name="summary"
-        value={formData.summary}
-        onChange={handleChange}
-    />
-    <input type="submit" value="Update Review"/>
-</form>
+        {/* <label>Book</label> */}
+        {/* <input
+            type="text"
+            name="book_id"
+            value={formData.book_id}
+            onChange={handleChange}
+            readOnly="readonly"
+        /> */}
+        <label>Stars</label>
+        <input
+            type="text"
+            name="stars"
+            value={formData.stars}
+            onChange={handleChange}
+        />
+        <label>Summary</label>
+        <input
+            type="text"
+            name="summary"
+            value={formData.summary}
+            onChange={handleChange}
+        />
+        <input type="submit" value="Update Review"/>
+    </form>
   );
 };
 

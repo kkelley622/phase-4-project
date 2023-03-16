@@ -21,6 +21,7 @@ const ReviewCard = ({ review }) => {
   return (
     <div>
       <figure>
+        <h1>{review.book.title}</h1>
         <img src={review.book.image_url} alt="book_cover" width={100} height={150} />
         <h2>{review.stars}/5 Stars</h2>
         <p>{review.summary} -{review.user.first_name}</p>
