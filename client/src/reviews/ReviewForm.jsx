@@ -1,30 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ErrorsContext } from '../context/ErrorsContext';
 import { ReviewsContext } from '../context/ReviewsContext';
 import { UsersContext } from '../context/UsersContext';
+import { BooksContext } from '../context/BooksContext'
 
 const ReviewForm = ({ loading }) => {
     
     const navigate = useNavigate();
     const {addReview} = useContext(ReviewsContext);
+    const {books} = useContext(BooksContext);
     const {loggedIn} = useContext(UsersContext);
     const {setErrors} = useContext(ErrorsContext);
-
-    useEffect(() => {
-        if(!loading && !loggedIn) {
-            navigate("/login")
-        }
-        return() => {
-            setErrors([])
-        }
-    }, [loading, loggedIn, navigate, setErrors]);
+    const {id} = useParams();
 
     const [formData, setFormData] = useState({
         book_id: "",
         stars: "",
         summary: "",
     });
+
+    useEffect(() => {
+        if(!loading && !loggedIn) {
+            navigate("/login")
+        }
+        if(books.length > 0) {
+            const book = books.find(book => book.id === parseInt(id, 10));
+            setFormData({
+                book_id: book.id,
+                stars: "",
+                summary: "",
+            })
+        }
+    }, [ loading, loggedIn, navigate, id, setErrors, books ]);
+
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value})
@@ -38,17 +47,18 @@ const ReviewForm = ({ loading }) => {
             stars: "",
             summary: "",
         })
+        navigate("/reviews");
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>Book</label>
+            {/* <label>Book</label>
             <input
                 type="text"
                 name="book_id"
                 value={formData.book_id}
                 onChange={handleChange}
-            />
+            /> */}
             <label>Stars</label>
             <input
                 type="text"

@@ -35,7 +35,7 @@ function App() {
            <Route path="/books/new" element={<BookForm loading={loading} />} />
            <Route path="/reviews" element={<ReviewsList loading={loading} />}/>
            <Route path="/reviews/:id/edit" element={<ReviewEdit loading={loading} />}/>
-           <Route path="/reviews/new" element={<ReviewForm loading={loading} />} />
+           <Route path="/books/:id/new-review" element={<ReviewForm loading={loading} />} />
            <Route path="/users" element={<UsersList loading={loading}/>}/>
            <Route path="/users/:user_id/reviews" element={<UserReviews />} />
            <Route path="/login" element={<Login loading={loading} />} />
