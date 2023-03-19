@@ -12,9 +12,9 @@ code {
     monospace;
 } */
 :root {
-  --bg: #282c34;
-  --header: #fff;
-  --link: #61dafb;
+  --bg: #85dcb8;
+  --header: #e27d60;
+  --link: #f4eff1;
   --text: hsla(0, 0%, 100%, 0.88);
 }
 
@@ -81,7 +81,7 @@ figure {
   min-width: 320px;
   max-width: 480px;
   max-height: 480px;
-  background-color: rgb(54, 54, 151);
+  background-color: #e8a87c;
 }
 
 figure img {
@@ -106,7 +106,7 @@ nav {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #200677;
+  background-color: #e27d60;
 }
 
 nav li {

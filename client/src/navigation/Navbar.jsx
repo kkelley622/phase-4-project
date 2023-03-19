@@ -38,6 +38,7 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <nav>
+        <h2 align="center">Bookspace</h2>
         <ul>
           <li><Link to="/">Home</Link></li>
           { loggedIn ? loggedInLinks() : loggedOutLinks() }

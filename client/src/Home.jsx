@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UsersContext } from './context/UsersContext'
 
 const Home = () => {
+  const {loggedIn} = useContext(UsersContext);
+
   return (
-    <div>Landing page for a cool app.</div>
+    <div className='message'>{ loggedIn ? "Welcome to Bookspace. Discover books you might be interested in reading." : "Login or Signup to get started!"}</div>
   )
 }
 
