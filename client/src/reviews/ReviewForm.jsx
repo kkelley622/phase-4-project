@@ -41,13 +41,28 @@ const ReviewForm = ({ loading }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        addReview(event, formData)
+        fetch("/reviews", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.errors) {
+                setErrors(data.errors)
+            } else {
+                addReview(data)
+                navigate("/reviews")
+            }
+        })
         setFormData({
             book_id: "",
             stars: "",
             summary: "",
         })
-        navigate("/reviews");
     };
 
     return (

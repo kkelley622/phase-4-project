@@ -18,21 +18,8 @@ const ReviewsProvider = ({ children }) => {
         }
       }, [loggedIn]);
 
-    async function addReview(event, reviewObj) {
-        event.preventDefault()
-        const response = await fetch("/reviews", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(reviewObj),
-        });
-        const data = await (response).json();
-        if(response.ok) {
-          setReviews([data, ...reviews]);
-          } else {
-            setErrors(data.errors)
-          }
+    const addReview = (reviewObj) => {
+        setReviews([...reviews, reviewObj])
     };
 
     const handleDeleteReview = (deletedReview) => {
