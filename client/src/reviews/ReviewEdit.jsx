@@ -59,15 +59,7 @@ const ReviewEdit = ({ loading }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-        {/* <label>Book</label> */}
-        {/* <input
-            type="text"
-            name="book_id"
-            value={formData.book_id}
-            onChange={handleChange}
-            readOnly="readonly"
-        /> */}
-        <label>Stars</label>
+        <label>Stars (1-5)</label>
         <input
             type="text"
             name="stars"
