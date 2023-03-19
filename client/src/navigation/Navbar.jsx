@@ -28,18 +28,20 @@ const Navbar = () => {
 
   const loggedOutLinks = () => {
     return(
-      <ul>
+      <>
         <li><Link to="/login">Login</Link></li>
         <li><Link to="/signup">Signup</Link></li>
-      </ul>
+      </>
     )
   }
 
   return (
     <div className='navbar'>
       <nav>
+        <ul>
           <li><Link to="/">Home</Link></li>
           { loggedIn ? loggedInLinks() : loggedOutLinks() }
+        </ul>
       </nav>
     </div>
   )
