@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/get-current-user", to: "users#get_current_user"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  post "/books/:book_id/new-review", to: "reviews#create"
 
 end
 

@@ -32,13 +32,28 @@ const BookForm = ({ loading }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        addBook(event, formData)
+        fetch("/books", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.errors) {
+                setErrors(data.errors)
+            } else {
+                addBook(data)
+                navigate("/books")
+            }
+        })
         setFormData({
             title: "",
             author: "",
             image_url: ""
         })
-        navigate("/books");
     }
 
   return (

@@ -21,7 +21,7 @@ const UserReviews = () => {
             .then(data => setUserReviews(data))
     }, [user_id, loggedIn, loading, navigate]);
 
-    const reviewCards = userReviews.map(review => <ReviewCard key={review.id} review={review}/>);
+    const reviewCards = userReviews?.map(review => <ReviewCard key={review.id} review={review}/>);
 
   return (
     <div>{ reviewCards }</div>

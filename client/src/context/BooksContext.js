@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { ErrorsContext } from "./ErrorsContext";
 import { UsersContext } from "./UsersContext";
 
 const BooksContext = createContext(null);
@@ -8,7 +7,6 @@ const BooksProvider = ({ children }) => {
 
     const [books, setBooks] = useState([]);
     const {loggedIn} = useContext(UsersContext);
-    const {setErrors} = useContext(ErrorsContext)
 
     const loadBooks = () => {
       if(loggedIn) {
@@ -20,26 +18,13 @@ const BooksProvider = ({ children }) => {
 
     useEffect(loadBooks, [loggedIn])
 
-    async function addBook(event, bookObj) {
-        event.preventDefault()
-        const response = await fetch("/books", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(bookObj),
-        });
-        const data = await (response).json();
-        if(data.ok) {
-          setBooks([data, ...books]);
-          } else {
-            setErrors(data.errors)
-          }
-        };
+    const addBook = (bookObj) => {
+      setBooks([...books, bookObj])
+    }
 
 
     return(
-        <BooksContext.Provider value={{books, setBooks, addBook}}>{ children }</BooksContext.Provider>
+        <BooksContext.Provider value={{ books, setBooks, addBook }}>{ children }</BooksContext.Provider>
     )
 };
 
