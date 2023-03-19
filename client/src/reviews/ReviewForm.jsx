@@ -67,14 +67,7 @@ const ReviewForm = ({ loading }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* <label>Book</label>
-            <input
-                type="text"
-                name="book_id"
-                value={formData.book_id}
-                onChange={handleChange}
-            /> */}
-            <label>Stars</label>
+            <label>Stars (1-5)</label>
             <input
                 type="text"
                 name="stars"
@@ -82,7 +75,7 @@ const ReviewForm = ({ loading }) => {
                 onChange={handleChange}
             />
             <label>Summary</label>
-            <input
+            <textarea
                 type="text"
                 name="summary"
                 value={formData.summary}
