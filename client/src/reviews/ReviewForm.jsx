@@ -59,12 +59,8 @@ const ReviewForm = ({ loading }) => {
             } else {
                 addReview(data)
                 navigate("/reviews")
+                setErrors([]);
             }
-        })
-        setFormData({
-            book_id: "",
-            stars: "",
-            summary: "",
         })
     };
 

@@ -27,7 +27,6 @@ const ReviewEdit = ({ loading }) => {
             if(!loading && currentUser.id !== review.user.id) {
                 navigate("/")
             }
-            console.log(review)
             setFormData({
                 book_title: review.book.title,
                 book_id: review.book_id,
