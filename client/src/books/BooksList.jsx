@@ -24,7 +24,10 @@ const BooksList = ({ loading }) => {
   const bookCards = books.map(book => <BookCard key={book.id} book={book}/>)
 
   return (
-    <div>{ bookCards }</div>
+    <>
+      <h3>Here's a List of All Our Books</h3>
+      <div>{ bookCards }</div>
+    </>
   )
 }
 

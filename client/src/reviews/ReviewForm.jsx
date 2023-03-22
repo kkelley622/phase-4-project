@@ -13,6 +13,7 @@ const ReviewForm = ({ loading }) => {
     const {loggedIn} = useContext(UsersContext);
     const {setErrors} = useContext(ErrorsContext);
     const {id} = useParams();
+    const [book, setBook] = useState("");
 
     const [formData, setFormData] = useState({
         book_id: "",
@@ -25,15 +26,17 @@ const ReviewForm = ({ loading }) => {
             navigate("/login")
         }
         if(books.length > 0) {
-            const book = books.find(book => book.id === parseInt(id, 10));
+            setBook(books.find(book => book.id === parseInt(id, 10)));
+            console.log(book)
             setFormData({
                 book_id: book.id,
                 stars: "",
                 summary: "",
             })
         }
-    }, [ loading, loggedIn, navigate, id, setErrors, books ]);
+    }, [ loading, loggedIn, navigate, id, setErrors, books, book ]);
 
+    console.log(book)
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value})
@@ -66,23 +69,26 @@ const ReviewForm = ({ loading }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Stars (1-5)</label>
-            <input
-                type="text"
-                name="stars"
-                value={formData.stars}
-                onChange={handleChange}
-            />
-            <label>Summary</label>
-            <textarea
-                type="text"
-                name="summary"
-                value={formData.summary}
-                onChange={handleChange}
-            />
-            <input type="submit" />
-        </form>
+        <>
+            <h3>Add a Review for {book.title}</h3>
+            <form onSubmit={handleSubmit}>
+                <label>Stars (1-5)</label>
+                <input
+                    type="text"
+                    name="stars"
+                    value={formData.stars}
+                    onChange={handleChange}
+                />
+                <label>Summary</label>
+                <textarea
+                    type="text"
+                    name="summary"
+                    value={formData.summary}
+                    onChange={handleChange}
+                />
+                <input type="submit" />
+            </form>
+        </>
     );
 };
 

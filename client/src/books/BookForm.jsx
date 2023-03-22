@@ -57,30 +57,33 @@ const BookForm = ({ loading }) => {
     }
 
   return (
-    <form onSubmit={handleSubmit}>
-        <label>Title:</label>
-        <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange} 
-        />
-        <label>Author:</label>
-        <input
-            type="text"
-            name="author"
-            value={formData.author}
-            onChange={handleChange}
-        />
-        <label>Cover Image:</label>
-        <input
-            type="text"
-            name="image_url"
-            value={formData.image_url}
-            onChange={handleChange}
-        />
-        <input type="submit" />
-    </form>
+    <>
+        <h3>Add a Book to Our Collection</h3>
+        <form onSubmit={handleSubmit}>
+            <label>Title:</label>
+            <input
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleChange} 
+            />
+            <label>Author:</label>
+            <input
+                type="text"
+                name="author"
+                value={formData.author}
+                onChange={handleChange}
+            />
+            <label>Cover Image:</label>
+            <input
+                type="text"
+                name="image_url"
+                value={formData.image_url}
+                onChange={handleChange}
+            />
+            <input type="submit" />
+        </form>
+    </>
   )
 }
 

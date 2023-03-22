@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { ErrorsContext } from "./ErrorsContext";
 import { UsersContext } from "./UsersContext";
 
 const ReviewsContext = createContext(null);
@@ -8,7 +7,6 @@ const ReviewsProvider = ({ children }) => {
 
     const [reviews, setReviews] = useState([]);
     const {loggedIn} = useContext(UsersContext);
-    const {setErrors} = useContext(ErrorsContext);
 
     useEffect(() => {
         if(loggedIn){

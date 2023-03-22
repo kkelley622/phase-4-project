@@ -19,7 +19,10 @@ const ReviewsList = ({ loading }) => {
   const reviewCards = reviews.map((review, idx) => <ReviewCard key={ idx } review={ review } handleDeleteReview={handleDeleteReview} currentUser={currentUser} />)
 
   return (
+    <>
+    <h3>Here's a List of Everyone's Reviews</h3>
     <div>{ reviewCards }</div>
+    </>
   );
 };
 

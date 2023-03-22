@@ -11,6 +11,7 @@ const ReviewEdit = ({ loading }) => {
     const {id} = useParams();
 
     const [formData, setFormData] = useState({
+        book_title: "",
         book_id: "",
         stars: "",
         summary: ""
@@ -28,6 +29,7 @@ const ReviewEdit = ({ loading }) => {
             }
             console.log(review)
             setFormData({
+                book_title: review.book.title,
                 book_id: review.book_id,
                 stars: review.stars,
                 summary: review.summary
@@ -58,23 +60,26 @@ const ReviewEdit = ({ loading }) => {
     }
 
   return (
-    <form onSubmit={handleSubmit}>
-        <label>Stars (1-5)</label>
-        <input
-            type="text"
-            name="stars"
-            value={formData.stars}
-            onChange={handleChange}
-        />
-        <label>Summary</label>
-        <input
-            type="text"
-            name="summary"
-            value={formData.summary}
-            onChange={handleChange}
-        />
-        <input type="submit" value="Update Review"/>
-    </form>
+    <>
+        <h3>Editing Your Review of {formData.book_title} </h3>
+        <form onSubmit={handleSubmit}>
+            <label>Stars (1-5)</label>
+            <input
+                type="text"
+                name="stars"
+                value={formData.stars}
+                onChange={handleChange}
+            />
+            <label>Summary</label>
+            <input
+                type="text"
+                name="summary"
+                value={formData.summary}
+                onChange={handleChange}
+            />
+            <input type="submit" value="Update Review"/>
+        </form>
+    </>
   );
 };
 

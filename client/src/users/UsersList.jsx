@@ -18,7 +18,10 @@ const UsersList = ({ loading }) => {
 
 
   return (
-    <ul>{ usersList }</ul>
+    <>
+      <h3>Click on a User's Name to View Their Reviews</h3>
+      <ul>{ usersList }</ul>
+    </>
   );
 };
 
