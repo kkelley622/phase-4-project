@@ -3,7 +3,7 @@ class BooksController < ApplicationController
     before_action :find_book, only: [:show]
 
     def index 
-        books = Book.all 
+        books = Book.all
         render json: books, status: :ok
     end
 
@@ -15,6 +15,7 @@ class BooksController < ApplicationController
         book = Book.create!(book_params)
         render json: book, status: :created 
     end
+
 
     private 
 

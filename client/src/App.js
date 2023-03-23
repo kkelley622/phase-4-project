@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState} from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './navigation/Navbar';
 import Home from './Home';
@@ -19,30 +19,30 @@ import { ErrorsProvider } from './context/ErrorsContext';
 import UserReviews from './reviews/UserReviews';
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   return (
       <BrowserRouter>
         <ErrorsProvider>
-        <UsersProvider setLoading={setLoading}>
-        <BooksProvider loading={loading}>
-        <ReviewsProvider loading={loading}>
+        <UsersProvider >
+        <ReviewsProvider >
+        <BooksProvider >
          <Navbar />
          <Errors />
          <Routes>
            <Route path="/" element={<Home />} />
-           <Route path="/books" element={<BooksList loading={loading}/>} />
-           <Route path="/books/new" element={<BookForm loading={loading} />} />
-           <Route path="/reviews" element={<ReviewsList loading={loading} />}/>
-           <Route path="/reviews/:id/edit" element={<ReviewEdit loading={loading} />}/>
-           <Route path="/books/:id/new-review" element={<ReviewForm loading={loading} />} />
-           <Route path="/users" element={<UsersList loading={loading}/>}/>
+           <Route path="/books" element={<BooksList />} />
+           <Route path="/books/new" element={<BookForm />} />
+           <Route path="/reviews" element={<ReviewsList />}/>
+           <Route path="/reviews/:id/edit" element={<ReviewEdit />}/>
+           <Route path="/books/:id/new-review" element={<ReviewForm  />} />
+           <Route path="/users" element={<UsersList/>}/>
            <Route path="/users/:user_id/reviews" element={<UserReviews />} />
-           <Route path="/login" element={<Login loading={loading} />} />
-           <Route path="/signup" element={<Signup loading={loading} />} />
+           <Route path="/login" element={<Login />} />
+           <Route path="/signup" element={<Signup />} />
          </Routes>
-        </ReviewsProvider>
         </BooksProvider>
+        </ReviewsProvider>
         </UsersProvider>
         </ErrorsProvider>
       </BrowserRouter>     

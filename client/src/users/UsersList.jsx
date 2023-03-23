@@ -14,7 +14,7 @@ const UsersList = ({ loading }) => {
         }
       }, [loading, loggedIn, navigate])
     
-  const usersList = users.map(user => <li key={user.id}><Link to={`/users/${ user.id }/reviews`}>{user.first_name}</Link></li>)
+  const usersList = users?.map(user => <li key={user.id}><Link to={`/users/${ user.id }/reviews`}>{user.first_name}</Link></li>)
 
 
   return (

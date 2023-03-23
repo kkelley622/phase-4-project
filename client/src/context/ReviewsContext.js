@@ -1,21 +1,18 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { UsersContext } from "./UsersContext";
+import { createContext, useEffect, useState } from "react";
 
-const ReviewsContext = createContext(null);
+const ReviewsContext = createContext();
 
 const ReviewsProvider = ({ children }) => {
 
     const [reviews, setReviews] = useState([]);
-    const {loggedIn} = useContext(UsersContext);
-
+    
     useEffect(() => {
-        if(loggedIn){
-          fetch("/reviews")
-            .then(response => response.json())
-            .then(data => setReviews(data))
-        }
-      }, [loggedIn]);
-
+        fetch("/reviews")
+        .then(response => response.json())
+        .then(data => setReviews(data))
+      }, []
+    );
+    
     const addReview = (reviewObj) => {
         setReviews([...reviews, reviewObj])
     };

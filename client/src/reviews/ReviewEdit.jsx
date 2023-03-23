@@ -53,7 +53,7 @@ const ReviewEdit = ({ loading }) => {
             .then(response => response.json())
             .then(data => {
                 editReview(data)
-                navigate("/reviews")
+                navigate(-1)
             })
 
     }

@@ -3,35 +3,34 @@ import { ErrorsContext } from "./ErrorsContext";
 
 const UsersContext = createContext({});
 
-const UsersProvider = ({ children, setLoading }) => {
+const UsersProvider = ({ children }) => {
 
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
-    const {setErrors} = useContext(ErrorsContext);
+    const {setLoading} =useContext(ErrorsContext);
 
-    const loadUsers = () => {
-      if(loggedIn){
-        fetch("/users")
-          .then(response => response.json())
-          .then(data => setUsers(data))
-      }
-    };
-
-   const getCurrentUser = () => {
+     useEffect(() => {
         fetch("/get-current-user")
         .then(response => response.json())
         .then(data => {
           if(!data.errors) {
             loginUser(data)
           }
-          
           setLoading(false)
         })
-    }
+     }, [setLoading])
 
-    useEffect(getCurrentUser, [setLoading])
-    useEffect(loadUsers, [loggedIn])
+    useEffect(() => {
+      fetch("/users")
+      .then(response => response.json())
+      .then(data => {
+        if(!data.errors) {
+          setUsers(data)
+        }
+        setLoading(false)
+      })
+    }, [setLoading])
 
     const loginUser = (user) => {
         setCurrentUser(user);
@@ -39,27 +38,15 @@ const UsersProvider = ({ children, setLoading }) => {
     };
 
     const logoutUser = () => {
-        setCurrentUser(null);
+        setCurrentUser({});
         setLoggedIn(false);
       };
 
-    async function addUser(event, userObj) {
-        event.preventDefault()
-        const response = await fetch("/signup", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(userObj)
-        });
-        const data = await (response.json());
-        if(response.ok) {
-          setUsers([data, ...users])
-          loginUser(data)
-        } else {
-          setErrors(data.errors)
-        }
-    };
+    const addUser = (user) => {
+      setCurrentUser(user)
+      setLoggedIn(true)
+
+    }
 
     return(
         <UsersContext.Provider value={{ users, currentUser, loggedIn, loginUser, logoutUser, addUser }}>{ children }</UsersContext.Provider>

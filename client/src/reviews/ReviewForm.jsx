@@ -27,7 +27,6 @@ const ReviewForm = ({ loading }) => {
         }
         if(books.length > 0) {
             setBook(books.find(book => book.id === parseInt(id, 10)));
-            console.log(book)
             setFormData({
                 book_id: book.id,
                 stars: "",
@@ -58,7 +57,7 @@ const ReviewForm = ({ loading }) => {
                 setErrors(data.errors)
             } else {
                 addReview(data)
-                navigate("/reviews")
+                navigate(-1)
                 setErrors([]);
             }
         })

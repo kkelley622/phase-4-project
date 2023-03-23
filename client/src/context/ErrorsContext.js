@@ -5,9 +5,11 @@ const ErrorsContext = createContext({});
 const ErrorsProvider = ({ children  }) => {
 
     const [errors, setErrors] = useState([]);
+    const [loading, setLoading] = useState(true);
+
 
     return(
-        <ErrorsContext.Provider value={{errors, setErrors}}>{ children }</ErrorsContext.Provider>
+        <ErrorsContext.Provider value={{errors, setErrors, loading, setLoading}}>{ children }</ErrorsContext.Provider>
     );
 };
 
