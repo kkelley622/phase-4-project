@@ -35,8 +35,6 @@ const ReviewForm = ({ loading }) => {
         }
     }, [ loading, loggedIn, navigate, id, setErrors, books, book ]);
 
-    console.log(book)
-
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value})
     };

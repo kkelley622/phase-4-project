@@ -7,8 +7,6 @@ const BookCard = ({ book }) => {
 
   const rating = book.reviews.map(review => review.stars).reduce((a, b) => a + b, 0)/book.reviews.length
 
-  console.log(rating)
-
   return (
     <figure>
       <div>
