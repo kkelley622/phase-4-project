@@ -5,12 +5,12 @@ import { ErrorsContext } from '../context/ErrorsContext';
 import { UsersContext } from '../context/UsersContext';
 import BookCard from './BookCard'
 
-const BooksList = ({ loading }) => {
+const BooksList = () => {
 
   const navigate = useNavigate();
   const { books } = useContext(BooksContext);
   const { loggedIn } = useContext(UsersContext);
-  const { setErrors } = useContext(ErrorsContext);
+  const { setErrors, loading } = useContext(ErrorsContext);
 
   useEffect(() => {
     if(!loading && !loggedIn) {

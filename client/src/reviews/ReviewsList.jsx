@@ -16,7 +16,7 @@ const ReviewsList = ({ loading }) => {
     }
   }, [loading, loggedIn, navigate])
 
-  const reviewCards = reviews.map((review, idx) => <ReviewCard key={ idx } review={ review } handleDeleteReview={handleDeleteReview} currentUser={currentUser} />)
+  const reviewCards = reviews?.map((review, idx) => <ReviewCard key={ idx } review={ review } handleDeleteReview={handleDeleteReview} currentUser={currentUser} />)
 
   return (
     <>
