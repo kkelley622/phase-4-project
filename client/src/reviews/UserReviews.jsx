@@ -18,16 +18,16 @@ const UserReviews = () => {
            navigate("/login")
            }
             setErrors([]);
-    }, [ loggedIn, loading, navigate]);
+    }, [ loggedIn, loading, navigate, setErrors]);
 
-    const currentReviews = reviews.filter((review) => review.user_id == user_id)
+    const currentReviews = reviews.filter((review) => review.user_id === parseInt(user_id, 10))
 
     const currentReviewCards = currentReviews?.map(review => <ReviewCard key={review.id} review={review} handleDeleteReview={handleDeleteReview}/>);
 
   return (
     <div>
 
-      { currentReviewCards }
+      { currentReviewCards.length > 0 ? currentReviewCards : "This User Doesn't Have Any Reviews"}
       </div>
   )
 }

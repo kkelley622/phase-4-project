@@ -16,6 +16,7 @@ const BookCard = ({ book }) => {
         <img src={book.image_url} alt="book-cover" width={100} height={150}/>
         <br></br>
         <button onClick={() => navigate(`/books/${book.id}/new-review`)}>Add Review</button>
+        <button onClick={() => navigate(`/books/${book.id}`)}>All Reviews</button>
       </div>
       </figure>
   )

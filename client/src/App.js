@@ -18,6 +18,7 @@ import { UsersProvider } from './context/UsersContext';
 import { ErrorsProvider } from './context/ErrorsContext';
 import UserReviews from './reviews/UserReviews';
 import UserBooks from './books/UserBooks';
+import BookReviews from './books/BookReviews';
 
 function App() {
   // const [loading, setLoading] = useState(true);
@@ -33,6 +34,7 @@ function App() {
          <Routes>
            <Route path="/" element={<Home />} />
            <Route path="/books" element={<BooksList />} />
+           <Route path="/books/:book_id" element={<BookReviews />} />
            <Route path="/books/new" element={<BookForm />} />
            <Route path="/mybooks" element={<UserBooks />} />
            <Route path="/reviews" element={<ReviewsList />}/>

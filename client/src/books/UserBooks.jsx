@@ -24,7 +24,7 @@ const UserBooks = () => {
     <>
         <h3>Books You Have Read</h3>
         <ul>
-        { myBooksList ? myBooksList : "You Haven't Read Anything Yet"}
+        { myBooksList.length > 0 ? myBooksList : "You Haven't Read Anything Yet"}
         </ul>
     </>
   )
