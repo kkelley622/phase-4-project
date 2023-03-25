@@ -19,13 +19,13 @@ const BookReviews = () => {
             setErrors([]);
     }, [ loggedIn, loading, navigate, setErrors]);
 
-    const bookReviews = reviews.filter((review) => review.book_id === parseInt(book_id, 10))
+    const bookReviews = reviews?.filter((review) => review.book_id === parseInt(book_id, 10))
 
     const bookReviewCards = bookReviews?.map(review => <ReviewCard key={review.id} review={review} handleDeleteReview={handleDeleteReview}/>);
 
 return (
     <>
-        {bookReviewCards.length > 0 ? bookReviewCards : "This Book Does Not Have Any Reviews"}
+        {bookReviewCards?.length > 0 ? bookReviewCards : "This Book Does Not Have Any Reviews"}
     </>
   )
 }

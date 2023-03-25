@@ -17,7 +17,7 @@ import { ReviewsProvider } from './context/ReviewsContext';
 import { UsersProvider } from './context/UsersContext';
 import { ErrorsProvider } from './context/ErrorsContext';
 import UserReviews from './reviews/UserReviews';
-import UserBooks from './books/UserBooks';
+import UserBooks from './users/UserBooks';
 import BookReviews from './books/BookReviews';
 
 function App() {

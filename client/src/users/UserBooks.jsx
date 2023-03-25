@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ErrorsContext } from '../context/ErrorsContext';
 import { UsersContext } from '../context/UsersContext';
 
@@ -18,13 +18,13 @@ const UserBooks = () => {
         }
       }, [loading, loggedIn, navigate, setErrors]);
 
-    const myBooksList = currentUser.books?.map(book => <li key={book.id}> {book.title} </li>)
+    const myBooksList = currentUser.books?.map(book => <li key={book.id}><Link to={`/books/${book.id}`}>{book.title}</Link></li> )
 
   return (
     <>
         <h3>Books You Have Read</h3>
         <ul>
-        { myBooksList.length > 0 ? myBooksList : "You Haven't Read Anything Yet"}
+        { myBooksList?.length > 0 ? myBooksList : "You Haven't Read Anything Yet"}
         </ul>
     </>
   )
