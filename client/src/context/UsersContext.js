@@ -9,18 +9,18 @@ const UsersProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
     const {setLoading} =useContext(ErrorsContext);
-
-     useEffect(() => {
-        fetch("/get-current-user")
-        .then(response => response.json())
-        .then(data => {
-          if(!data.errors) {
-            loginUser(data)
-          }
-          setLoading(false)
-        })
-     }, [setLoading])
-
+    
+    useEffect(() => {
+      fetch("/get-current-user")
+      .then(response => response.json())
+      .then(data => {
+        if(!data.errors) {
+          loginUser(data)
+        }
+        setLoading(false)
+      })
+    }, [setLoading])
+    
     useEffect(() => {
       fetch("/users")
       .then(response => response.json())
@@ -30,23 +30,22 @@ const UsersProvider = ({ children }) => {
         }
         setLoading(false)
       })
-    }, [setLoading])
-
-    const loginUser = (user) => {
-        setCurrentUser(user);
-        setLoggedIn(true);
+    }, [loggedIn, setLoading])
+    
+    
+      const loginUser = (user) => {
+          setCurrentUser(user);
+          setLoggedIn(true);
+      };
+    
+    const logoutUser = () => {
+      setCurrentUser({});
+      setLoggedIn(false);
     };
 
-    const logoutUser = () => {
-        setCurrentUser({});
-        setLoggedIn(false);
-      };
-
     const addUser = (user) => {
-      setCurrentUser(user)
-      setLoggedIn(true)
-
-    }
+      setUsers([...users, user])
+    };
 
     return(
         <UsersContext.Provider value={{ users, currentUser, loggedIn, loginUser, logoutUser, addUser }}>{ children }</UsersContext.Provider>

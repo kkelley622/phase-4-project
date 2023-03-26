@@ -46,7 +46,7 @@ const BookForm = ({ loading }) => {
                 setErrors(data.errors)
             } else {
                 addBook(data)
-                navigate("/reviews")
+                navigate("/books")
             }
         })
         setFormData({

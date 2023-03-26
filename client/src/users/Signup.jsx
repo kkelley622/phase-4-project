@@ -6,9 +6,8 @@ import { UsersContext } from '../context/UsersContext';
 const Signup = () => {
 
     const navigate = useNavigate();
-    const {addUser} = useContext(UsersContext);
     const {setErrors, loading} = useContext(ErrorsContext);
-    const {loggedIn} = useContext(UsersContext);
+    const {loggedIn, loginUser, addUser} = useContext(UsersContext);
 
 
     useEffect(() => {
@@ -21,23 +20,6 @@ const Signup = () => {
         }
     }, [loading, loggedIn, navigate, setErrors]);
 
-    // async function addUser(event, userObj) {
-    //     event.preventDefault()
-    //     const response = await fetch("/signup", {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //       body: JSON.stringify(userObj)
-    //     });
-    //     const data = await (response.json());
-    //     if(response.ok) {
-    //       setUsers([data, ...users])
-    //       loginUser(data)
-    //     } else {
-    //       setErrors(data.errors)
-    //     }
-    // };
 
     const [formData, setFormData] = useState({
         first_name: "",
@@ -53,19 +35,20 @@ const Signup = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         fetch("/signup", {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(formData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                if(data.ok) {
-                  addUser(data)
-                  navigate("/reviews")
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.errors) {
+                    setErrors(data.errors)
                 } else {
-                  setErrors(data.errors)
+                    addUser(data)
+                    loginUser(data)
+                    navigate("/")
                 }
             });
     };

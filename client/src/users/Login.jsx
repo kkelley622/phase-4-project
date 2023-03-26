@@ -46,7 +46,7 @@ const Login = ({ loading }) => {
     } else {
       loginUser(data)
       setErrors([])
-      navigate("/books")
+      navigate("/")
       }
     })
   };
