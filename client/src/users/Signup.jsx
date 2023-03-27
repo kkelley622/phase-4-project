@@ -26,6 +26,7 @@ const Signup = () => {
         last_name: "",
         user_name: "",
         password: "",
+        password_confirmation: "",
     });
 
     const handleChange = (event) => {
@@ -81,6 +82,13 @@ const Signup = () => {
             type="password"
             name="password"
             value={formData.password}
+            onChange={handleChange}
+        />
+        <label>Password Confirmation</label>
+        <input
+            type="password"
+            name="password_confirmation"
+            value={formData.password_confirmation}
             onChange={handleChange}
         />
         <input type="submit" value="Create Account"/>
