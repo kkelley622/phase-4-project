@@ -70,7 +70,7 @@ const ReviewEdit = ({ loading }) => {
                 onChange={handleChange}
             />
             <label>Summary</label>
-            <input
+            <textarea
                 type="text"
                 name="summary"
                 value={formData.summary}
