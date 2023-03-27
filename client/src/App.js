@@ -21,7 +21,6 @@ import UserBooks from './users/UserBooks';
 import BookReviews from './books/BookReviews';
 
 function App() {
-  // const [loading, setLoading] = useState(true);
 
   return (
       <BrowserRouter>

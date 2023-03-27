@@ -33,9 +33,9 @@ const UsersProvider = ({ children }) => {
     }, [loggedIn, setLoading])
     
     
-      const loginUser = (user) => {
-          setCurrentUser(user);
-          setLoggedIn(true);
+    const loginUser = (user) => {
+        setCurrentUser(user);
+        setLoggedIn(true);
       };
     
     const logoutUser = () => {
