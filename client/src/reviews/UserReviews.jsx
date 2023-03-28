@@ -9,7 +9,7 @@ const UserReviews = () => {
 
     const navigate = useNavigate();
     const {user_id} = useParams();
-    const {loggedIn, loading} = useContext(UsersContext);
+    const {loggedIn, loading, users} = useContext(UsersContext);
     const {handleDeleteReview, reviews} = useContext(ReviewsContext);
     const {setErrors} = useContext(ErrorsContext);
     
@@ -20,9 +20,11 @@ const UserReviews = () => {
             setErrors([]);
     }, [ loggedIn, loading, navigate, setErrors]);
 
-    const currentReviews = reviews.filter((review) => review.user_id === parseInt(user_id, 10))
 
-    const currentReviewCards = currentReviews?.map(review => <ReviewCard key={review.id} review={review} handleDeleteReview={handleDeleteReview}/>);
+    const user = users.find((u) => u.id === parseInt(user_id, 10))
+
+
+    const currentReviewCards = user.reviews?.map(review => <ReviewCard key={review.id} review={review} book={review.book} handleDeleteReview={handleDeleteReview}/>);
 
   return (
     <div>

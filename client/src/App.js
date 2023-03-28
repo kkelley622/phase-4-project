@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './navigation/Navbar';
 import Home from './Home';
@@ -21,16 +21,17 @@ import UserBooks from './users/UserBooks';
 import BookReviews from './books/BookReviews';
 
 function App() {
+  const [loading, setLoading] = useState(true);
 
   return (
       <BrowserRouter>
-        <ErrorsProvider>
+        <ErrorsProvider loading={loading} setLoading={setLoading}>
         <UsersProvider >
         <ReviewsProvider >
         <BooksProvider >
          <Navbar />
          <Errors />
-         <Routes>
+         {loading ? <h1>Loading... </h1> : <Routes>
            <Route path="/" element={<Home />} />
            <Route path="/books" element={<BooksList />} />
            <Route path="/books/:book_id" element={<BookReviews />} />
@@ -43,7 +44,7 @@ function App() {
            <Route path="/users/:user_id/reviews" element={<UserReviews />} />
            <Route path="/login" element={<Login />} />
            <Route path="/signup" element={<Signup />} />
-         </Routes>
+         </Routes>}
         </BooksProvider>
         </ReviewsProvider>
         </UsersProvider>

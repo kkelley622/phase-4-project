@@ -17,7 +17,6 @@ const UsersProvider = ({ children }) => {
         if(!data.errors) {
           loginUser(data)
         }
-        setLoading(false)
       })
     }, [setLoading])
     

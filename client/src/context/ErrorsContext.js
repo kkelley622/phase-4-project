@@ -2,10 +2,10 @@ import { createContext, useState} from "react";
 
 const ErrorsContext = createContext({});
 
-const ErrorsProvider = ({ children  }) => {
+const ErrorsProvider = ({ children, loading, setLoading  }) => {
 
     const [errors, setErrors] = useState([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
 
     return(
