@@ -10,7 +10,7 @@ const UserReviews = () => {
     const navigate = useNavigate();
     const {user_id} = useParams();
     const {loggedIn, loading} = useContext(UsersContext);
-    const {handleDeleteReview, reviews} = useContext(ReviewsContext);
+    const {reviews} = useContext(ReviewsContext);
     const {setErrors} = useContext(ErrorsContext);
     
     useEffect(() => {
@@ -22,7 +22,7 @@ const UserReviews = () => {
 
     const currentReviews = reviews.filter((review) => review.user_id === parseInt(user_id, 10));
 
-    const currentReviewCards = currentReviews?.map(review => <ReviewCard key={review.id} review={review} handleDeleteReview={handleDeleteReview}/>);
+    const currentReviewCards = currentReviews?.map(review => <ReviewCard key={review.id} review={review} />);
 
   return (
     <div>
