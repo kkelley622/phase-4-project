@@ -7,7 +7,7 @@ const ReviewEdit = ({ loading }) => {
 
     const navigate = useNavigate();
     const {reviews, editReview} = useContext(ReviewsContext);
-    const {loggedIn, currentUser} = useContext(UsersContext);
+    const {loggedIn, currentUser, updateUserReviews} = useContext(UsersContext);
     const {id} = useParams();
 
     const [formData, setFormData] = useState({
@@ -53,6 +53,7 @@ const ReviewEdit = ({ loading }) => {
             .then(response => response.json())
             .then(data => {
                 editReview(data)
+                updateUserReviews(data)
                 navigate(-1)
             })
 
