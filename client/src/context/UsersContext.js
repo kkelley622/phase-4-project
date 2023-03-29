@@ -57,6 +57,8 @@ const UsersProvider = ({ children }) => {
           return review;
         }
       })
+      console.log(userToUpdate)
+      console.log(updatedUserReviews)
       const updatedUser = {
         ...userToUpdate,
         reviews: updatedUserReviews
@@ -69,7 +71,6 @@ const UsersProvider = ({ children }) => {
         }
       })
       setUsers(updatedUsersState)
-      console.log(users)
     }
 
     // const updateResource = (collection, updatedItem) => {
