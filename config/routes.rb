@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/get-current-user", to: "users#get_current_user"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  # get "/users/:user_id/reviews", to: "reviews#index"
 
 end
 

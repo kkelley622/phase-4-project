@@ -12,8 +12,17 @@ const UserReviews = () => {
     const {loggedIn, loading} = useContext(UsersContext);
     const {reviews} = useContext(ReviewsContext);
     const {setErrors} = useContext(ErrorsContext);
-    
-    useEffect(() => {
+
+    // Alternate solution to issue of UserReviews not updating with state change:
+    // const [userReviews, setUserReviews] = useState([])
+    // useEffect(() => {
+    //   fetch("/users/" + user_id + "/reviews")
+    //   .then(response => response.json())
+    //   .then(data => setUserReviews(data))
+    // }, [user_id])
+    // const currentReviewCards = userReviews?.map(review => <ReviewCard key={review.id} review={review} />);
+
+     useEffect(() => {
         if(!loading && !loggedIn){
            navigate("/login")
            }
