@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { UsersContext } from '../context/UsersContext';
-import { ReviewsContext } from '../context/ReviewsContext';
 import ReviewCard from './ReviewCard';
 import { ErrorsContext } from '../context/ErrorsContext';
 
@@ -10,7 +9,6 @@ const UserReviews = () => {
     const navigate = useNavigate();
     const {user_id} = useParams();
     const {loggedIn, loading, users} = useContext(UsersContext);
-    const {reviews} = useContext(ReviewsContext);
     const {setErrors} = useContext(ErrorsContext);
 
     // Alternate solution to issue of UserReviews not updating with state change:
@@ -37,9 +35,8 @@ const UserReviews = () => {
 
   return (
     <div>
-
       { currentReviewCards.length > 0 ? currentReviewCards : "This User Doesn't Have Any Reviews"}
-      </div>
+    </div>
   )
 }
 

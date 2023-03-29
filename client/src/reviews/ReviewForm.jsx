@@ -10,7 +10,7 @@ const ReviewForm = ({ loading }) => {
     const navigate = useNavigate();
     const {addReview} = useContext(ReviewsContext);
     const {books} = useContext(BooksContext);
-    const {loggedIn} = useContext(UsersContext);
+    const {loggedIn, updateUserAddedReviews} = useContext(UsersContext);
     const {setErrors} = useContext(ErrorsContext);
     const {id} = useParams();
     const [book, setBook] = useState("");
@@ -55,6 +55,7 @@ const ReviewForm = ({ loading }) => {
                 setErrors(data.errors)
             } else {
                 addReview(data)
+                updateUserAddedReviews(data)
                 navigate(-1)
                 setErrors([]);
             }

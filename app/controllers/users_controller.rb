@@ -23,6 +23,13 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    def top_3
+        # Users and find how many reviews they have
+        # Order our users based on number of reviews
+        # Return the user with the highest number
+
+    end
+
     private 
 
     def find_user 

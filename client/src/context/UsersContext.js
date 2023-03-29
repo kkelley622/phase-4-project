@@ -47,9 +47,9 @@ const UsersProvider = ({ children }) => {
     };
 
     const updateUserReviews = (updatedReview) => {
-      console.log(updatedReview)
+      // console.log(updatedReview)
       const userToUpdate = users?.find(user => user.id === updatedReview.user_id)
-      console.log(userToUpdate)
+      // console.log(userToUpdate)
       const updatedUserReviews = userToUpdate.reviews?.map(review => {
         if(review.id === updatedReview.id) {
           return updatedReview;
@@ -57,8 +57,8 @@ const UsersProvider = ({ children }) => {
           return review;
         }
       })
-      console.log(userToUpdate)
-      console.log(updatedUserReviews)
+      // console.log(userToUpdate)
+      // console.log(updatedUserReviews)
       const updatedUser = {
         ...userToUpdate,
         reviews: updatedUserReviews
@@ -72,6 +72,50 @@ const UsersProvider = ({ children }) => {
       })
       setUsers(updatedUsersState)
     }
+
+    const updateUserDeletedReviews = (deletedReview) => {
+      // console.log(updatedReview)
+      const userToUpdate = users?.find(user => user.id === deletedReview.user_id)
+      // console.log(userToUpdate)
+      const updatedUserReviews = userToUpdate.reviews?.filter((review) => review.id !== deletedReview.id)
+      // console.log(userToUpdate)
+      // console.log(updatedUserReviews)
+      const updatedUser = {
+        ...userToUpdate,
+        reviews: updatedUserReviews
+      }
+      const updatedUsersState = users.map(user => {
+        if(user.id === updatedUser.id) {
+          return updatedUser
+        } else {
+          return user
+        }
+      })
+      setUsers(updatedUsersState)
+    };
+
+    const updateUserAddedReviews = (addedReview) => {
+      // console.log(updatedReview)
+      const userToUpdate = users?.find(user => user.id === addedReview.user_id)
+      // console.log(userToUpdate)
+      // const updatedUserReviews = userToUpdate.reviews?.filter((review) => review.id !== addedReview.id)
+      // console.log(userToUpdate)
+      // console.log(updatedUserReviews)
+      const updatedUser = {
+        ...userToUpdate,
+        reviews: [...userToUpdate.reviews, addedReview]
+      }
+      const updatedUsersState = users?.map(user => {
+        if(user.id === updatedUser.id) {
+          return updatedUser
+        } else {
+          return user
+        }
+      })
+      setUsers(updatedUsersState)
+    };
+
+
 
     // const updateResource = (collection, updatedItem) => {
     //   return collection.map(item => {
@@ -93,7 +137,7 @@ const UsersProvider = ({ children }) => {
     // setUsers(updatedUsersState)
 
     return(
-        <UsersContext.Provider value={{ users, currentUser, loggedIn, loginUser, logoutUser, addUser, updateUserReviews }}>{ children }</UsersContext.Provider>
+        <UsersContext.Provider value={{ users, currentUser, loggedIn, loginUser, logoutUser, addUser, updateUserReviews, updateUserDeletedReviews, updateUserAddedReviews }}>{ children }</UsersContext.Provider>
     )
 
 }
